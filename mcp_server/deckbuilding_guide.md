@@ -2,7 +2,9 @@
 
 ## Hard rules (checked by `validate_deck`)
 
-- Exactly **40 cards**.
+- **40 to 50 cards**; 40 is ideal. This is a house rule for this game; official Duel Masters
+  uses exactly 40. Go past 40 only for cards that clearly earn their slot, since every extra card
+  makes your key cards less likely to show up.
 - At most **4 copies** of any card with the same name. Reprints share a name, so they share the limit.
 
 ## Game basics that shape a deck
@@ -28,7 +30,7 @@
    - removal (`categories: ["removal"]`), card draw (`draw`) and ramp (`ramp`, mostly Nature)
    - Shield Triggers (`keywords: ["shield_trigger"]`)
    - finishers: Double Breakers or better, or strong evolutions
-4. **Assemble 40 cards**, then run `analyze_deck` and read the warnings and stats.
+4. **Assemble the deck** (aim for 40), then run `analyze_deck` and read the warnings and stats.
 5. **Fix the weak spots** (curve, trigger count, mana balance, evolution bases) and analyze again.
 6. **Validate and save** with `save_deck`, including a short strategy description.
 7. **Explain the deck to the user:** the game plan, key cards and why, and the weaknesses.

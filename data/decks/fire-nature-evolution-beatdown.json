@@ -1,0 +1,112 @@
+{
+  "slug": "fire-nature-evolution-beatdown",
+  "name": "Fire Nature Evolution Beatdown",
+  "strategy": "Evolution beatdown. Turns 2-3: cheap Human and Beast Folk bases (Gonta counts as both) plus Nature ramp (Faerie Life, Bronze-Arm Tribe). Evolve the bases into power monsters that attack immediately: Barkwhip (2 cost, 5000), Armored Blaster Valdios (Double Breaker, Humans +1000), Armored Decimator Valkaizer (destroys a creature with 4000 power or less), Fighter Dual Fang (8000 Double Breaker, ramps 2). Ramp pays for Explosive Fighter Ucarn's 9000 Double Breaker and its 2-mana drawback. Searing Wave wipes the opponent's small creatures and blockers before a big attack; Tornado Flame is removal and a Shield Trigger; Magma Gazer turns any attacker into a Double Breaker for the finishing push. Extras (46-card version): Peacock Breath gives every creature power attacker +6000 while you have an evolution out, turning even 2-cost bases into Double Breakers for a finishing swing; Power Blazer is an extra Beast Folk base that becomes 5000 power with an evolution out; Crimson Hammer clears small blockers early.",
+  "notes": "Built from the user's direction: Human evolutions, Ucarn, Beast Folk evolutions (Barkwhip, Fighter Dual Fang), Searing Wave, destroyer and power attacker spells, Nature for mana. Weaknesses: no card draw; only 6 Shield Triggers; Searing Wave costs one of your own shields; evolutions are dead cards without a base. Expanded from 40 to 46 cards (house rule allows 40-50) with Crimson Hammer x2, Peacock Breath x2, Power Blazer x2. Further options: Earth Ripper (Beast Folk evolution Double Breaker).",
+  "valid": true,
+  "total_cards": 46,
+  "civilizations": [
+    "Fire",
+    "Nature"
+  ],
+  "created": "2026-10-19T08:14:01+00:00",
+  "updated": "2026-10-19T08:21:29+00:00",
+  "cards": [
+    {
+      "id": "0775",
+      "name": "Gonta, the Warrior Savage",
+      "count": 4,
+      "image_path": "data/images/0775.webp"
+    },
+    {
+      "id": "0080",
+      "name": "Brawler Zyler",
+      "count": 4,
+      "image_path": "data/images/0080.webp"
+    },
+    {
+      "id": "0749",
+      "name": "Adventure Boar",
+      "count": 4,
+      "image_path": "data/images/0749.webp"
+    },
+    {
+      "id": "0100",
+      "name": "Bronze-Arm Tribe",
+      "count": 4,
+      "image_path": "data/images/0100.webp"
+    },
+    {
+      "id": "0170",
+      "name": "Barkwhip, the Smasher",
+      "count": 3,
+      "image_path": "data/images/0170.webp"
+    },
+    {
+      "id": "0124",
+      "name": "Armored Blaster Valdios",
+      "count": 3,
+      "image_path": "data/images/0124.webp"
+    },
+    {
+      "id": "0125",
+      "name": "Fighter Dual Fang",
+      "count": 3,
+      "image_path": "data/images/0125.webp"
+    },
+    {
+      "id": "0441",
+      "name": "Armored Decimator Valkaizer",
+      "count": 2,
+      "image_path": "data/images/0441.webp"
+    },
+    {
+      "id": "0086",
+      "name": "Explosive Fighter Ucarn",
+      "count": 3,
+      "image_path": "data/images/0086.webp"
+    },
+    {
+      "id": "0468",
+      "name": "Faerie Life",
+      "count": 4,
+      "image_path": "data/images/0468.webp"
+    },
+    {
+      "id": "0226",
+      "name": "Searing Wave",
+      "count": 2,
+      "image_path": "data/images/0226.webp"
+    },
+    {
+      "id": "0098",
+      "name": "Tornado Flame",
+      "count": 2,
+      "image_path": "data/images/0098.webp"
+    },
+    {
+      "id": "0091",
+      "name": "Magma Gazer",
+      "count": 2,
+      "image_path": "data/images/0091.webp"
+    },
+    {
+      "id": "0083",
+      "name": "Crimson Hammer",
+      "count": 2,
+      "image_path": "data/images/0083.webp"
+    },
+    {
+      "id": "2493",
+      "name": "Peacock Breath",
+      "count": 2,
+      "image_path": "data/images/2493.webp"
+    },
+    {
+      "id": "1199",
+      "name": "Power Blazer",
+      "count": 2,
+      "image_path": "data/images/1199.webp"
+    }
+  ]
+}

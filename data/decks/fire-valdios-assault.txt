@@ -1,0 +1,71 @@
+FIRE VALDIOS ASSAULT  (43 cards)
+============================================================
+Civilizations: Fire 34 / Nature 16 cards   Average cost: 3.44
+Deck rule: 40-50 cards (40 ideal), max 4 copies per card
+
+FIRE HUMAN BASES
+----------------
+4x Brawler Zyler  [Fire, cost 2]
+     Cheap Human, attacks at 3000
+4x Gonta, the Warrior Savage  [Fire/Nature, cost 2]
+     4000 power; counts as Human (for Valdios) and Beast Folk (for Barkwhip and Dual Fang)
+3x Explosive Dude Joe  [Fire, cost 3]
+     Solid 3000-power Human base
+3x Brad, Super Kickin' Dynamo  [Fire, cost 3]
+     Human; destroys a blocker each turn he starts tapped (after he has attacked)
+3x Wind Axe, the Warrior Savage  [Fire/Nature, cost 5]
+     Human and Beast Folk; destroys a blocker and adds 1 mana when it comes in
+
+POWER MONSTERS
+--------------
+2x Divine Machine Armor Valborg  [Fire, cost 3]
+     Human evolution; Double Breaker for 3, +1000 power per other Fire creature when attacking
+4x Armored Blaster Valdios  [Fire, cost 4]
+     MAIN BOSS: Double Breaker; your other Humans get +1000
+2x Armored Decimator Valkaizer  [Fire, cost 5]
+     Human evolution; destroys a creature with 4000 power or less
+3x Explosive Fighter Ucarn  [Fire, cost 5]
+     9000 power, Double Breaker (you put 2 mana cards into your graveyard)
+2x Barkwhip, the Smasher  [Nature, cost 2]
+     Beast Folk evolution, 5000 power; goes on Gonta or Wind Axe
+3x Fighter Dual Fang  [Nature, cost 6]
+     Beast Folk evolution, 8000 power, Double Breaker, adds 2 mana
+
+SPELLS
+------
+4x Faerie Life  [Nature, cost 2]
+     Shield Trigger; adds 1 mana
+2x The Strong Crush  [Fire, cost 2]
+     Destroys a blocker; draws a card if you have a 6000+ power creature
+2x Peacock Breath  [Fire, cost 4]
+     With an evolution out, all your creatures get Power attacker +6000; 6000+ attackers break 2 shields
+2x Searing Wave  [Fire, cost 5]
+     Destroys all opponent creatures with 3000 power or less (costs one of your shields)
+
+GAME PLAN
+---------
+- Turns 2-3: play Human bases and Faerie Life for extra mana.
+- Turns 3-4: evolve into Valborg (3-cost Double Breaker) or Valdios (Double Breaker, other Humans +1000).
+- Clear blockers with Brad, Wind Axe and The Strong Crush; Valkaizer and Searing Wave clear small attackers.
+- Nature only ramps and supplies Barkwhip and Fighter Dual Fang, which go on Gonta or Wind Axe.
+- Heavy hitters: Ucarn and Fighter Dual Fang. Finish with Peacock Breath to turn the whole board into Double Breakers.
+
+DECK STATS
+----------
+Mana curve: 2-cost: 16, 3-cost: 8, 4-cost: 6, 5-cost: 10, 6-cost: 3
+Double Breakers or better: 12   Removal: 6   Ramp: 10   Card draw: 2   Shield Triggers: 4
+
+WEAKNESSES
+----------
+- Only 7 bases for the Beast Folk evolutions (Gonta x4, Wind Axe x3).
+- Only 4 Shield Triggers.
+- Searing Wave costs you a shield; Brad has to attack before his ability works.
+
+SWAP OPTIONS
+------------
+- Bronze-Arm Tribe: Nature ramp creature and Beast Folk base (more bases for Barkwhip/Dual Fang)
+- Comet Missile / Tornado Flame: Fire Shield Triggers with removal
+- Shock Trooper Mykee: Human Speed Attacker that destroys a creature
+- Armored Raider Gandaval: Human evolution Double Breaker
+
+Card strength notes are judgment, not tested in games.

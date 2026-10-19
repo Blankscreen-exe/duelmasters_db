@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Water-Darkness Control</title>
+<style>
+  :root { --bg: #14161b; --panel: #1e2129; --text: #e8e8ea; --muted: #9a9ca3; --accent: #e8a33a; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+         font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  header { padding: 18px 32px 8px; }
+  .crumbs { font-size: 13px; color: var(--muted); margin-bottom: 10px; display: flex; gap: 8px; }
+  .crumbs a { color: var(--accent); text-decoration: none; }
+  .crumbs a:hover { text-decoration: underline; }
+  h1 { margin: 0 0 6px; font-size: 26px; }
+  .meta { color: var(--muted); font-size: 14px; display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+  .meta img { width: 18px; height: 18px; vertical-align: middle; }
+  details { margin: 12px 0 0; max-width: 900px; color: var(--muted); font-size: 14px; line-height: 1.5; }
+  summary { cursor: pointer; color: var(--text); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+          gap: 20px; padding: 20px 32px 40px; }
+  .card { background: var(--panel); border-radius: 10px; padding: 10px; display: flex;
+          flex-direction: column; gap: 8px; }
+  .art { position: relative; }
+  .art img { width: 100%; aspect-ratio: 5 / 7; object-fit: cover; border-radius: 6px; display: block;
+             background: #2a2e38; }
+  .count { margin-left: auto; background: var(--accent); color: #1a1205; font-weight: 700;
+           font-size: 13px; padding: 1px 9px; border-radius: 999px; }
+  .info { color: var(--muted); font-size: 12px; display: flex; gap: 6px; align-items: center; }
+  .info img { width: 14px; height: 14px; }
+  .name { position: relative; }
+  .name input { width: 100%; padding: 8px 36px 8px 10px; border-radius: 6px; border: 1px solid #343846;
+                background: #12141a; color: var(--text); font-size: 13px; }
+  .name button { position: absolute; right: 4px; top: 50%; transform: translateY(-50%);
+                 border: 0; background: transparent; color: var(--muted); cursor: pointer;
+                 padding: 5px; border-radius: 4px; display: flex; }
+  .name button:hover { color: var(--text); background: #2a2e38; }
+  .name button.copied { color: #4cc38a; }
+  .toast { position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%); background: #4cc38a;
+           color: #08130d; font-weight: 600; padding: 8px 16px; border-radius: 6px; opacity: 0;
+           transition: opacity .2s; pointer-events: none; }
+  .toast.show { opacity: 1; }
+  .art img { cursor: zoom-in; transition: transform .15s; }
+  .art img:hover { transform: scale(1.02); }
+  .viewer { position: fixed; inset: 0; background: rgba(5, 6, 9, .9); display: none;
+            flex-direction: column; align-items: center; justify-content: center; gap: 14px; z-index: 10; }
+  .viewer.open { display: flex; }
+  .viewer img { max-height: 84vh; max-width: 92vw; border-radius: 14px; box-shadow: 0 10px 50px rgba(0,0,0,.6);
+                cursor: zoom-out; }
+  .viewer .caption { color: var(--text); font-size: 16px; display: flex; gap: 10px; align-items: center; }
+  .viewer button { position: absolute; border: 0; background: rgba(255,255,255,.1); color: #fff;
+                   font-size: 26px; width: 48px; height: 48px; border-radius: 50%; cursor: pointer; }
+  .viewer button:hover { background: rgba(255,255,255,.22); }
+  .viewer .close { top: 18px; right: 18px; font-size: 22px; }
+  .viewer .prev { left: 18px; top: 50%; transform: translateY(-50%); }
+  .viewer .next { right: 18px; top: 50%; transform: translateY(-50%); }
+</style>
+</head>
+<body>
+<header>
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">All decks</a><span>&rsaquo;</span><span>Water-Darkness Control</span></nav>
+  <h1>Water-Darkness Control</h1>
+  <div class="meta"><span>40 cards</span><span>16 unique</span><span><img src="../data/icons/civs/water.webp" alt="Water" title="Water"> Water <img src="../data/icons/civs/darkness.webp" alt="Darkness" title="Darkness"> Darkness</span></div>
+  <details><summary>Strategy &amp; notes</summary><p><b>Strategy:</b> Classic draw-go control. Turns 2-4: wall up with blockers (Cosmo Politan draws when it blocks, Bloody Squito is a 4000-power wall for 2, Gigaslug&#x27;s Slayer kills whatever it blocks, Hulk Crawler and Phantom Spear Zircon draw on entry). Use Energy Stream and Brain Serum to keep land drops and answers flowing. Mid-game: kill or bounce every real threat with Spiral Gate, Death Chaser, Hopeless Vortex and Terror Pit; Death Mendosa and Aqua Surfer are removal stapled to bodies. 15 Shield Triggers punish rush. Late game: land 7-cost double breakers that also remove creatures as they enter (Cyber X Xanadu tucks a creature to the bottom of the deck, Ghoul Ginus trades a shield for a kill, Olzekia sacrifices a used-up blocker so the opponent destroys 2 creatures), then close out once their board is empty. Mulligan/keep tips: you want a 2-cost blocker or Spiral Gate plus both civilizations in early mana. Put spare Cosmo Politans or excess 7-drops into mana early.</p><p><b>Notes:</b> User request: Water/Darkness control, lots of removal, card draw and blockers, a few big finishers, any set. Weaknesses: only 5 finishers, so it can run out of win conditions in long games; Death Chaser, Death Mendosa and Terror Pit-only answers mean big unblockable evolutions can be tough; Xanadu&#x27;s leave-play trigger can give the opponent a free creature; Ghoul Ginus&#x27;s shield-to-hand trades away a shield. Swap options: Aku, Ultimate God (W/D 9000 double breaker), Crystal Axe (unblockable hand evolution), Proclamation of Weakness / Great Reversal of Reality and Death for more triggers, Tropic Crawler or Panaon as blockers that bounce.</p></details>
+</header>
+<main class="grid">
+  <div class="card">
+    <div class="art"><img src="../data/images/0056.webp" alt="Bloody Squito" loading="lazy"></div>
+    <div class="info"><img src="../data/icons/civs/darkness.webp" alt="Darkness" title="Darkness"><span>Cost 2 &middot; Creature</span><span class="count">&times;2</span></div>
+    <div class="name"><input type="text" value="Bloody Squito" title="Bloody Squito" readonly aria-label="Card name"><button type="button" title="Copy name" aria-label="Copy name"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H8V7h11v14z"/></svg></button></div>
+  </div>
+  <div class="card">
+    <div class="art"><img src="../data/images/2216.webp" alt="Cosmo Politan" loading="lazy"></div>
+    <div class="info"><img src="../data/icons/civs/water.webp" alt="Water" title="Water"><span>Cost 2 &middot; Creature</span><span class="count">&times;4</span></div>
+    <div class="name"><input type="text" value="Cosmo Politan" title="Cosmo Politan" readonly aria-label="Card name"><button type="button" title="Copy name" aria-label="Copy name"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H8V7h11v14z"/></svg></button></div>
+  </div>
+  <div class="card">
+    <div class="art"><img src="../data/images/0050.webp" alt="Spiral Gate" loading="lazy"></div>
+    <div class="info"><img src="../data/icons/civs/water.webp" alt="Water" title="Water"><span>Cost 2 &middot; Spell</span><span class="count">&times;4</span></div>
+    <div class="name"><input type="text" value="Spiral Gate" title="Spiral Gate" readonly aria-label="Card name"><button type="button" title="Copy name" aria-label="Copy name"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H8V7h11v14z"/></svg></button></div>
+  </div>
+  <div class="card">
+    <div class="art"><img src="../data/images/0402.webp" alt="Energy Stream" loading="lazy"></div>
+    <div class="info"><img src="../data/icons/civs/water.webp" alt="Water" title="Water"><span>Cost 3 &middot; Spell</span><span class="count">&times;3</span></div>
+    <div class="name"><input type="text" value="Energy Stream" title="Energy Stream" readonly aria-label="Card name"><button type="button" title="Copy name" aria-label="Copy name"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H8V7h11v14z"/></svg></button></div>
+  </div>
+  <div class="card">
+    <div class="art"><img src="../data/images/0892.webp" alt="Gigaslug" loading="lazy"></div>
+    <div class="info"><img src="../data/icons/civs/darkness.webp" alt="Darkness" title="Darkness"><span>Cost 3 &middot; Creature</span><span class="count">&times;2</span></div>
+    <div class="name"><input type="text" value="Gigaslug" title="Gigaslug" readonly aria-label="Card name"><button type="button" title="Copy name" aria-label="Copy name"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H8V7h11v14z"/></svg></button></div>
+  </div>
+  <div class="card">
+    <div class="art"><img src="../data/images/0037.webp" alt="Brain Serum" loading="lazy"></div>
+    <div class="info"><img src="../data/icons/civs/water.webp" alt="Water" title="Water"><span>Cost 4 &middot; Spell</span><span class="count">&times;2</span></div>
+    <div class="name"><input type="text" value="Brain Serum" title="Brain Serum" readonly aria-label="Card name"><button type="button" title="Copy name" aria-label="Copy name"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H8V7h11v14z"/></svg></button></div>
+  </div>
+  <div class="card">
+    <div class="art"><img src="../data/images/2015.webp" alt="Hulk Crawler" loading="lazy"></div>
+    <div class="info"><img src="../data/icons/civs/water.webp" alt="Water" title="Water"><span>Cost 4 &middot; Creature</span><span class="count">&times;3</span></div>
+    <div class="name"><input type="text" value="Hulk Crawler" title="Hulk Crawler" readonly aria-label="Card name"><button type="button" title="Copy name" aria-label="Copy name"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H8V7h11v14z"/></svg></button></div>
+  </div>
+  <div class="card">
+    <div class="art"><img src="../data/images/9172.webp" alt="Phantom Spear Zircon" loading="lazy"></div>
+    <div class="info"><img src="../data/icons/civs/water.webp" alt="Water" title="Water"><img src="../data/icons/civs/darkness.webp" alt="Darkness" title="Darkness"><span>Cost 4 &middot; Creature</span><span class="count">&times;2</span></div>
+    <div class="name"><input type="text" value="Phantom Spear Zircon" title="Phantom Spear Zircon" readonly aria-label="Card name"><button type="button" title="Copy name" aria-label="Copy name"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H8V7h11v14z"/></svg></button></div>
+  </div>
+  <div class="card">
+    <div class="art"><img src="../data/images/1098.webp" alt="Death Chaser" loading="lazy"></div>
+    <div class="info"><img src="../data/icons/civs/darkness.webp" alt="Darkness" title="Darkness"><span>Cost 5 &middot; Spell</span><span class="count">&times;3</span></div>
+    <div class="name"><input type="text" value="Death Chaser" title="Death Chaser" readonly aria-label="Card name"><button type="button" title="Copy name" aria-label="Copy name"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H8V7h11v14z"/></svg></button></div>
+  </div>
+  <div class="card">
+    <div class="art"><img src="../data/images/0514.webp" alt="Hopeless Vortex" loading="lazy"></div>
+    <div class="info"><img src="../data/icons/civs/darkness.webp" alt="Darkness" title="Darkness"><span>Cost 5 &middot; Spell</span><span class="count">&times;2</span></div>
+    <div class="name"><input type="text" value="Hopeless Vortex" title="Hopeless Vortex" readonly aria-label="Card name"><button type="button" title="Copy name" aria-label="Copy name"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H8V7h11v14z"/></svg></button></div>
+  </div>
+  <div class="card">
+    <div class="art"><img src="../data/images/0321.webp" alt="Aqua Surfer" loading="lazy"></div>
+    <div class="info"><img src="../data/icons/civs/water.webp" alt="Water" title="Water"><span>Cost 6 &middot; Creature</span><span class="count">&times;2</span></div>
+    <div class="name"><input type="text" value="Aqua Surfer" title="Aqua Surfer" readonly aria-label="Card name"><button type="button" title="Copy name" aria-label="Copy name"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H8V7h11v14z"/></svg></button></div>
+  </div>
+  <div class="card">
+    <div class="art"><img src="../data/images/1912.webp" alt="Death Mendosa, Dragonic Baron of Death" loading="lazy"></div>
+    <div class="info"><img src="../data/icons/civs/darkness.webp" alt="Darkness" title="Darkness"><span>Cost 6 &middot; Creature</span><span class="count">&times;2</span></div>
+    <div class="name"><input type="text" value="Death Mendosa, Dragonic Baron of Death" title="Death Mendosa, Dragonic Baron of Death" readonly aria-label="Card name"><button type="button" title="Copy name" aria-label="Copy name"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H8V7h11v14z"/></svg></button></div>
+  </div>
+  <div class="card">
+    <div class="art"><img src="../data/images/0073.webp" alt="Terror Pit" loading="lazy"></div>
+    <div class="info"><img src="../data/icons/civs/darkness.webp" alt="Darkness" title="Darkness"><span>Cost 6 &middot; Spell</span><span class="count">&times;4</span></div>
+    <div class="name"><input type="text" value="Terror Pit" title="Terror Pit" readonly aria-label="Card name"><button type="button" title="Copy name" aria-label="Copy name"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H8V7h11v14z"/></svg></button></div>
+  </div>
+  <div class="card">
+    <div class="art"><img src="../data/images/2258.webp" alt="Cyber X Xanadu" loading="lazy"></div>
+    <div class="info"><img src="../data/icons/civs/water.webp" alt="Water" title="Water"><span>Cost 7 &middot; Creature</span><span class="count">&times;2</span></div>
+    <div class="name"><input type="text" value="Cyber X Xanadu" title="Cyber X Xanadu" readonly aria-label="Card name"><button type="button" title="Copy name" aria-label="Copy name"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H8V7h11v14z"/></svg></button></div>
+  </div>
+  <div class="card">
+    <div class="art"><img src="../data/images/2263.webp" alt="Ghoul Ginus, the All-Destroying Fear Lord" loading="lazy"></div>
+    <div class="info"><img src="../data/icons/civs/darkness.webp" alt="Darkness" title="Darkness"><span>Cost 7 &middot; Creature</span><span class="count">&times;2</span></div>
+    <div class="name"><input type="text" value="Ghoul Ginus, the All-Destroying Fear Lord" title="Ghoul Ginus, the All-Destroying Fear Lord" readonly aria-label="Card name"><button type="button" title="Copy name" aria-label="Copy name"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H8V7h11v14z"/></svg></button></div>
+  </div>
+  <div class="card">
+    <div class="art"><img src="../data/images/1744.webp" alt="Olzekia, General of Decapitation" loading="lazy"></div>
+    <div class="info"><img src="../data/icons/civs/darkness.webp" alt="Darkness" title="Darkness"><span>Cost 7 &middot; Creature</span><span class="count">&times;1</span></div>
+    <div class="name"><input type="text" value="Olzekia, General of Decapitation" title="Olzekia, General of Decapitation" readonly aria-label="Card name"><button type="button" title="Copy name" aria-label="Copy name"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H8V7h11v14z"/></svg></button></div>
+  </div>
+</main>
+<div class="toast" id="toast">Copied</div>
+<div class="viewer" id="viewer" role="dialog" aria-modal="true" aria-label="Card viewer">
+  <button type="button" class="close" title="Close (Esc)" aria-label="Close">&#x2715;</button>
+  <button type="button" class="prev" title="Previous (Left arrow)" aria-label="Previous card">&#x2039;</button>
+  <img id="viewer-img" alt="">
+  <div class="caption"><span id="viewer-name"></span><span class="count" id="viewer-count"></span></div>
+  <button type="button" class="next" title="Next (Right arrow)" aria-label="Next card">&#x203A;</button>
+</div>
+<script>
+  const toast = document.getElementById("toast");
+  function fallbackCopy(input) {
+    input.select();
+    document.execCommand("copy");
+    input.setSelectionRange(0, 0);
+  }
+  document.querySelectorAll(".name button").forEach(btn => {
+    btn.addEventListener("click", async () => {
+      const input = btn.previousElementSibling;
+      try { await navigator.clipboard.writeText(input.value); } catch (e) { fallbackCopy(input); }
+      btn.classList.add("copied");
+      toast.textContent = "Copied: " + input.value;
+      toast.classList.add("show");
+      setTimeout(() => { btn.classList.remove("copied"); toast.classList.remove("show"); }, 1200);
+    });
+  });
+
+  // Click a card to enlarge it; Esc / click closes, arrow keys step through the deck.
+  const viewer = document.getElementById("viewer");
+  const viewerImg = document.getElementById("viewer-img");
+  const cards = Array.from(document.querySelectorAll(".card"));
+  let current = -1;
+  function show(i) {
+    current = (i + cards.length) % cards.length;
+    const card = cards[current];
+    const img = card.querySelector(".art img");
+    viewerImg.src = img.src;
+    viewerImg.alt = img.alt;
+    document.getElementById("viewer-name").textContent = img.alt;
+    document.getElementById("viewer-count").textContent = card.querySelector(".count").textContent;
+    viewer.classList.add("open");
+  }
+  function hide() { viewer.classList.remove("open"); current = -1; }
+  cards.forEach((card, i) => card.querySelector(".art img").addEventListener("click", () => show(i)));
+  viewer.querySelector(".close").addEventListener("click", hide);
+  viewer.querySelector(".prev").addEventListener("click", e => { e.stopPropagation(); show(current - 1); });
+  viewer.querySelector(".next").addEventListener("click", e => { e.stopPropagation(); show(current + 1); });
+  viewer.addEventListener("click", e => { if (e.target === viewer || e.target === viewerImg) hide(); });
+  document.addEventListener("keydown", e => {
+    if (current < 0) return;
+    if (e.key === "Escape") hide();
+    else if (e.key === "ArrowLeft") show(current - 1);
+    else if (e.key === "ArrowRight") show(current + 1);
+  });
+  // Open a card straight away with a link like deck.html#card-3
+  const m = location.hash.match(/^#card-(\d+)$/);
+  if (m && cards[m[1] - 1]) show(m[1] - 1);
+</script>
+</body>
+</html>

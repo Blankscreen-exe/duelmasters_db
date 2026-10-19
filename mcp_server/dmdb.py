@@ -7,17 +7,24 @@ Kept free of any MCP/protocol code so the game (or tests) can import it directly
 import json
 import re
 import sqlite3
+import webbrowser
 from collections import Counter
 from datetime import datetime, timezone
 from difflib import get_close_matches
 from pathlib import Path
 
+from deck_html import render_deck_html, render_index_html
+
 ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = ROOT / "data"
 DB_PATH = DATA_DIR / "duelmasters.db"
 DECKS_DIR = DATA_DIR / "decks"
+HTML_DIR = ROOT / "decks"  # browsable HTML deck pages
 
-DECK_SIZE = 40
+# House rule for this game: 40-50 cards are legal, 40 is ideal (official Duel Masters is exactly 40).
+DECK_MIN = 40
+DECK_MAX = 50
+DECK_IDEAL = 40
 MAX_COPIES = 4
 CIVILIZATIONS = ["Light", "Water", "Darkness", "Fire", "Nature"]
 MAX_SEARCH_LIMIT = 100
@@ -32,13 +39,14 @@ class DMError(Exception):
 # --------------------------------------------------------------------------
 
 class CardDB:
-    def __init__(self, db_path=DB_PATH, decks_dir=DECKS_DIR):
+    def __init__(self, db_path=DB_PATH, decks_dir=DECKS_DIR, html_dir=HTML_DIR):
         if not Path(db_path).exists():
             raise DMError(f"Database not found at {db_path}. Run scraper/scrape_dm.py first.")
         self.db = sqlite3.connect(f"file:{Path(db_path).as_posix()}?mode=ro", uri=True,
                                   check_same_thread=False)
         self.db.row_factory = sqlite3.Row
         self.decks_dir = Path(decks_dir)
+        self.html_dir = Path(html_dir)
         self._load_cache()
 
     def _load_cache(self):
@@ -344,8 +352,8 @@ class CardDB:
     def validate_deck(self, cards):
         resolved, errors = self.resolve_deck(cards)
         total = sum(n for _, n in resolved)
-        if total != DECK_SIZE:
-            errors.append(f"Deck has {total} cards; it must have exactly {DECK_SIZE}.")
+        if not DECK_MIN <= total <= DECK_MAX:
+            errors.append(f"Deck has {total} cards; it must have {DECK_MIN}-{DECK_MAX}.")
         for c, n in resolved:
             if n > MAX_COPIES:
                 errors.append(f"{n} copies of '{c['name']}'; the maximum is {MAX_COPIES}.")
@@ -400,6 +408,9 @@ class CardDB:
                                "bases_in_deck": bases})
 
         warnings = []
+        if DECK_IDEAL < total <= DECK_MAX:
+            warnings.append(f"{total} cards; {DECK_IDEAL} is ideal. Each extra card makes your key cards "
+                            f"less likely to show up, so only add cards that earn their slot.")
         st = kw_counts.get("shield_trigger", 0)
         if st < 4:
             warnings.append(f"Only {st} Shield Trigger cards; most decks want 6-12 for defense.")
@@ -459,6 +470,8 @@ class CardDB:
         slug = slugify(slug)
         if not slug:
             raise DMError("Deck name must contain letters or numbers.")
+        if slug == "index":
+            raise DMError("'index' is reserved for the deck listing page; pick another deck name.")
         return self.decks_dir / f"{slug}.json"
 
     def save_deck(self, name, cards, strategy=None, notes=None, overwrite=False, allow_invalid=False):
@@ -500,7 +513,8 @@ class CardDB:
             shown = path.relative_to(ROOT).as_posix()
         except ValueError:  # decks dir outside the repo
             shown = str(path)
-        return {"saved": True, "slug": path.stem, "path": shown,
+        html = self.export_deck_html(path.stem)
+        return {"saved": True, "slug": path.stem, "path": shown, "html_path": html["html_path"],
                 "valid": validation["valid"], "errors": validation["errors"]}
 
     def list_decks(self):
@@ -529,7 +543,72 @@ class CardDB:
         if not path.exists():
             raise DMError(f"No deck named '{slug}'.")
         path.unlink()
+        html = self.html_dir / f"{path.stem}.html"
+        if html.exists():
+            html.unlink()
+        self.export_index_html()
         return {"deleted": path.stem}
+
+    def export_deck_html(self, slug):
+        """Write decks/<slug>.html: card image grid with one-click copyable names."""
+        deck = self.get_deck(slug)
+        cards = []
+        for entry in deck["cards"]:
+            c = self.cards.get(entry["id"]) or self.resolve(entry["name"])
+            cards.append((c, entry["count"]))
+        cards.sort(key=lambda x: (x[0]["cost"] if x[0]["cost"] is not None else 99, x[0]["name"]))
+        icons = {(r["kind"], r["code"]): r["path"] for r in self.db.execute("SELECT kind, code, path FROM icons")}
+        self.html_dir.mkdir(parents=True, exist_ok=True)
+        out = self.html_dir / f"{deck['slug']}.html"
+        out.write_text(render_deck_html(deck, cards, icons, DATA_DIR, self.html_dir), encoding="utf-8")
+        self.export_index_html()
+        return {"html_path": self._shown(out), "absolute_path": str(out), "cards": len(cards)}
+
+    def export_index_html(self):
+        """Write decks/index.html listing every deck page in the decks folder, newest first."""
+        self.html_dir.mkdir(parents=True, exist_ok=True)
+        entries = []
+        for page in self.html_dir.glob("*.html"):
+            if page.stem == "index":
+                continue
+            entry = {"file": page.name, "name": page.stem.replace("-", " ").title()}
+            data_file = self.decks_dir / f"{page.stem}.json"
+            try:
+                d = json.loads(data_file.read_text(encoding="utf-8")) if data_file.exists() else None
+            except (OSError, json.JSONDecodeError):
+                d = None
+            if d:
+                resolved = [(self.cards.get(c.get("id")), c.get("count", 1)) for c in d.get("cards", [])]
+                resolved = [(c, n) for c, n in resolved if c]
+                # Cover image: the strongest creature (highest power, then cost), else the first card.
+                creatures = [c for c, _ in resolved if c["power"] is not None]
+                cover = (max(creatures, key=lambda c: (c["power"], c["cost"] or 0)) if creatures
+                         else resolved[0][0] if resolved else None)
+                entry.update(name=d.get("name") or entry["name"], civilizations=d.get("civilizations"),
+                             total_cards=d.get("total_cards"), valid=d.get("valid"),
+                             updated=d.get("updated"), strategy=d.get("strategy"),
+                             cover_image=cover["image_path"] if cover else None,
+                             card_names=[c["name"] for c, _ in resolved])
+            entries.append(entry)
+        entries.sort(key=lambda e: (e.get("updated") or "", e["name"]), reverse=True)
+        icons = {(r["kind"], r["code"]): r["path"] for r in self.db.execute("SELECT kind, code, path FROM icons")}
+        out = self.html_dir / "index.html"
+        out.write_text(render_index_html(entries, icons, DATA_DIR, self.html_dir), encoding="utf-8")
+        return {"index_path": self._shown(out), "absolute_path": str(out), "decks": len(entries)}
+
+    def open_deck_listing(self, open_browser=True):
+        """Rebuild decks/index.html and open it in the default browser."""
+        result = self.export_index_html()
+        if open_browser:
+            result["opened_in_browser"] = webbrowser.open(Path(result["absolute_path"]).as_uri())
+        return result
+
+    @staticmethod
+    def _shown(path):
+        try:
+            return Path(path).relative_to(ROOT).as_posix()
+        except ValueError:
+            return str(path)
 
     # ---------------------------------------------------------------- helpers
 

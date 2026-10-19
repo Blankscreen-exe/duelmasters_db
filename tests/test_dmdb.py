@@ -20,7 +20,8 @@ class DMTestCase(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.tmp = tempfile.TemporaryDirectory()
-        cls.db = CardDB(decks_dir=cls.tmp.name)
+        cls.html_tmp = tempfile.TemporaryDirectory()
+        cls.db = CardDB(decks_dir=cls.tmp.name, html_dir=cls.html_tmp.name)
         # A legal 40-card mono-fire list built from real cards: 10 distinct names x 4, no Shield Triggers.
         pool = cls.db.search(civilizations=["Fire"], civ_match="exact", card_types=["Creature"],
                              cost_max=4, limit=100)["cards"]
@@ -31,6 +32,7 @@ class DMTestCase(unittest.TestCase):
     def tearDownClass(cls):
         cls.db.db.close()
         cls.tmp.cleanup()
+        cls.html_tmp.cleanup()
 
 
 class TestLookup(DMTestCase):
@@ -116,6 +118,15 @@ class TestDeckRules(DMTestCase):
         self.assertFalse(r["valid"])
         self.assertIn("36 cards", r["errors"][0])
 
+    def test_up_to_50_cards_allowed_with_warning(self):
+        extra = deck(("Bolshack Dragon", 4), ("Aqua Hulcus", 4), ("Burning Mane", 2))
+        self.assertTrue(self.db.validate_deck(self.legal + extra)["valid"])  # 50
+        a = self.db.analyze_deck(self.legal + extra)
+        self.assertTrue(any("40 is ideal" in w for w in a["warnings"]))
+        r = self.db.validate_deck(self.legal + extra + deck(("Fear Fang", 1)))  # 51
+        self.assertFalse(r["valid"])
+        self.assertIn("40-50", r["errors"][0])
+
     def test_too_many_copies_merged_by_name_across_reprints(self):
         cards = self.legal[:-1] + deck(("0063", 2), ("0423", 2), ("Death Smoke", 1))
         r = self.db.validate_deck(cards)
@@ -177,6 +188,45 @@ class TestStorage(DMTestCase):
         r = self.db.save_deck("draft", self.legal[:2], allow_invalid=True)
         self.assertFalse(r["valid"])
         self.db.delete_deck("draft")
+
+    def test_html_written_on_save_and_removed_on_delete(self):
+        r = self.db.save_deck("Html Test <b>", self.legal, strategy="Use \"quotes\" & <tags>")
+        page = Path(self.html_tmp.name) / "html-test-b.html"
+        self.assertTrue(page.exists())
+        html = page.read_text(encoding="utf-8")
+        self.assertIn("Html Test &lt;b&gt;", html)            # names escaped
+        self.assertIn("&amp; &lt;tags&gt;", html)             # strategy escaped
+        self.assertEqual(html.count('class="card"'), 10)       # one tile per unique card
+        self.assertEqual(html.count("<input "), 10)
+        self.assertIn("navigator.clipboard", html)
+        self.assertIn("data/images/", html)                   # image paths point into data/images
+        self.assertIn("&times;4", html)
+        self.db.delete_deck("html-test-b")
+        self.assertFalse(page.exists())
+
+    def test_index_lists_decks_and_pages_link_back(self):
+        self.db.save_deck("Index Deck A", self.legal, strategy="Plan A")
+        self.db.save_deck("Index Deck B", self.legal)
+        index = (Path(self.html_tmp.name) / "index.html").read_text(encoding="utf-8")
+        self.assertIn('href="index-deck-a.html"', index)
+        self.assertIn('href="index-deck-b.html"', index)
+        self.assertIn("Plan A", index)
+        page = (Path(self.html_tmp.name) / "index-deck-a.html").read_text(encoding="utf-8")
+        self.assertIn('<a href="index.html">All decks</a>', page)
+        self.db.delete_deck("index-deck-a")
+        index = (Path(self.html_tmp.name) / "index.html").read_text(encoding="utf-8")
+        self.assertNotIn("index-deck-a.html", index)
+        r = self.db.open_deck_listing(open_browser=False)
+        self.assertGreaterEqual(r["decks"], 1)
+        self.db.delete_deck("index-deck-b")
+
+    def test_index_name_reserved(self):
+        with self.assertRaises(DMError):
+            self.db.save_deck("Index", self.legal)
+
+    def test_export_unknown_deck(self):
+        with self.assertRaises(DMError):
+            self.db.export_deck_html("nope")
 
     def test_slug_blocks_path_traversal(self):
         r = self.db.save_deck("../../evil", self.legal)

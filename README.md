@@ -70,7 +70,7 @@ approve the `duelmasters` server. Then ask for a deck in plain English:
 >
 > Look at my deck `armored-dragon-overlords` and suggest improvements against rush decks.
 
-You can also run the prompt directly: `/mcp__duelmasters__build_deck`.
+You can also run the built-in prompt: `/mcp__duelmasters__build_deck "fire/nature swarm deck"`. Wrap the request in quotes, because Claude Code splits the text after a slash command on spaces. With no text, Claude asks what deck you want.
 
 | Tool | Purpose |
 |---|---|
@@ -79,8 +79,10 @@ You can also run the prompt directly: `/mcp__duelmasters__build_deck`.
 | `list_values` | Valid races, keywords, categories, sets, etc. |
 | `find_synergies` | Evolution bases, evolutions a card can become, race support, cards that mention it by name |
 | `analyze_deck` | Mana curve, civilization split, role counts, evolution base check, warnings |
-| `validate_deck` | 40 cards, at most 4 copies per name, all cards exist |
+| `validate_deck` | 40-50 cards (40 ideal), at most 4 copies per name, all cards exist |
 | `save_deck` / `list_decks` / `get_deck` / `delete_deck` | Decks stored as JSON in `data/decks/` |
+| `export_deck_html` | Writes `decks/<slug>.html`: card image grid, each name in a box with a one-click copy button (`save_deck` does this automatically) |
+| `open_deck_listing` | Rebuilds `decks/index.html` (all decks, filterable, each linking to its page) and opens it in your browser |
 | `deckbuilding_guide` | Rules and archetype guidelines Claude follows (`mcp_server/deckbuilding_guide.md`) |
 
 Saved decks look like this, ready for a game to load:
@@ -97,13 +99,15 @@ Saved decks look like this, ready for a game to load:
 }
 ```
 
-`data/decks/` includes three example decks built by Claude during testing.
+Every saved deck also gets a browsable page in `decks/<slug>.html`, and `decks/index.html` lists them all (each deck page has an "All decks" link back). Open it in your browser from inside the repo; it loads images from `data/images/` with relative paths.
+
+`data/decks/` includes example decks built by Claude during testing.
 
 The deck logic lives in `mcp_server/dmdb.py` with no MCP code, so a game can import it directly.
 
 **Tests:** `python -m unittest discover tests` · **Server self-test:** `python mcp_server/server.py --selftest`
 
-**Limits:** the database has no ban list or format data, so only the basic deck rules are checked.
+**Limits:** the database has no ban list or format data, so only the basic deck rules are checked. Deck size follows this game's house rule (40-50, 40 ideal); change `DECK_MIN`/`DECK_MAX` in `mcp_server/dmdb.py` to use another rule.
 The tools can't simulate games, so judgments about deck strength are Claude's opinion.
 
 ## Note on usage

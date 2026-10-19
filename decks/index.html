@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Duel Masters decks</title>
+<style>
+  :root { --bg: #14161b; --panel: #1e2129; --text: #e8e8ea; --muted: #9a9ca3; --accent: #e8a33a; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+         font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  header { padding: 24px 32px 8px; display: flex; flex-wrap: wrap; gap: 16px; align-items: end;
+           justify-content: space-between; }
+  h1 { margin: 0; font-size: 26px; }
+  .sub { color: var(--muted); font-size: 14px; margin-top: 4px; }
+  #filter { padding: 9px 12px; width: 300px; border-radius: 6px; border: 1px solid #343846;
+            background: #12141a; color: var(--text); font-size: 14px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+          gap: 20px; padding: 20px 32px 40px; }
+  .deck { background: var(--panel); border-radius: 10px; overflow: hidden; display: flex;
+          text-decoration: none; color: inherit; border: 1px solid transparent; transition: border-color .15s; }
+  .deck:hover { border-color: var(--accent); }
+  .cover { width: 100px; flex: none; background: #2a2e38; }
+  .cover img { width: 100px; height: 140px; object-fit: cover; display: block; }
+  .body { padding: 12px 14px; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+  .name { font-weight: 650; font-size: 16px; }
+  .line { color: var(--muted); font-size: 12px; display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+  .line img { width: 15px; height: 15px; }
+  .strategy { color: var(--muted); font-size: 12px; line-height: 1.4; overflow: hidden;
+              display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; }
+  .bad { color: #e5534b; }
+  .empty { color: var(--muted); padding: 20px 32px; }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>Duel Masters decks</h1>
+    <div class="sub">6 decks</div>
+  </div>
+  <input id="filter" type="search" placeholder="Filter by name, civilization or card..." aria-label="Filter decks">
+</header>
+<main class="grid">
+  <a class="deck" href="fire-valdios-assault.html" data-search="fire valdios assault fire nature brawler zyler gonta, the warrior savage brad, super kickin&#x27; dynamo explosive dude joe wind axe, the warrior savage armored blaster valdios divine machine armor valborg armored decimator valkaizer barkwhip, the smasher fighter dual fang explosive fighter ucarn faerie life searing wave the strong crush peacock breath">
+    <div class="cover"><img src="../data/images/0086.webp" alt="" loading="lazy"></div>
+    <div class="body">
+      <div class="name">Fire Valdios Assault</div>
+      <div class="line"><img src="../data/icons/civs/fire.webp" alt="Fire" title="Fire"><img src="../data/icons/civs/nature.webp" alt="Nature" title="Nature"><span>43 cards &middot; updated 2026-10-19</span></div>
+      <div class="strategy">Fire-led evolution beatdown with Armored Blaster Valdios as the early boss. Turns 2-3: Human bases (Brawler Zyler, Gonta, Explosive Dude Joe, Brad) and Faerie Life ramp. Turn 3-4: evolve into Divine Machine Armor Valborg (3-cost Double Breaker) or Valdios (Double Breaker, other Humans +1000). Blockers get cleared by Brad (silent skill), Wind Axe (also ramps) and The Strong Crush (draws a card with a 6000+ creature out); Valkaizer and Searing Wave clear small attackers. Nature only ramps and supplies Barkwhip and Fighter Dual Fang, which go on Gonta or Wind Axe (both Human and Beast Folk). Ucarn and Fighter Dual Fang are the heavy hitters; Peacock Breath turns the whole board into Double Breakers for the final swing.</div>
+    </div>
+  </a>
+  <a class="deck" href="fire-nature-evolution-beatdown.html" data-search="fire nature evolution beatdown fire nature gonta, the warrior savage brawler zyler adventure boar bronze-arm tribe barkwhip, the smasher armored blaster valdios fighter dual fang armored decimator valkaizer explosive fighter ucarn faerie life searing wave tornado flame magma gazer crimson hammer peacock breath power blazer">
+    <div class="cover"><img src="../data/images/0086.webp" alt="" loading="lazy"></div>
+    <div class="body">
+      <div class="name">Fire Nature Evolution Beatdown</div>
+      <div class="line"><img src="../data/icons/civs/fire.webp" alt="Fire" title="Fire"><img src="../data/icons/civs/nature.webp" alt="Nature" title="Nature"><span>46 cards &middot; updated 2026-10-19</span></div>
+      <div class="strategy">Evolution beatdown. Turns 2-3: cheap Human and Beast Folk bases (Gonta counts as both) plus Nature ramp (Faerie Life, Bronze-Arm Tribe). Evolve the bases into power monsters that attack immediately: Barkwhip (2 cost, 5000), Armored Blaster Valdios (Double Breaker, Humans +1000), Armored Decimator Valkaizer (destroys a creature with 4000 power or less), Fighter Dual Fang (8000 Double Breaker, ramps 2). Ramp pays for Explosive Fighter Ucarn&#x27;s 9000 Double Breaker and its 2-mana drawback. Searing Wave wipes the opponent&#x27;s small creatures and blockers before a big attack; Tornado Flame is removal and a Shield Trigger; Magma Gazer turns any attacker into a Double Breaker for the finishing push. Extras (46-card version): Peacock Breath gives every creature power attacker +6000 while you have an evolution out, turning even 2-cost bases into Double Breakers for a finishing swing; Power Blazer is an extra Beast Folk base that becomes 5000 power with an evolution out; Crimson Hammer clears small blockers early.</div>
+    </div>
+  </a>
+  <a class="deck" href="fire-nature-dreammate-swarm.html" data-search="fire nature dreammate swarm nature fire kabuto 1, armored insectobeast ralbin of pop mountain prisoned pakoneko rinpao, king of speed eating jangaljan, firespirit beetle peach princess, fearless faerie hopstep battan homelos, amazing artiste daigoku ogre, brave of disaster cuckoo clock coco-cala comet missile lunatic energy">
+    <div class="cover"><img src="../data/images/2342.webp" alt="" loading="lazy"></div>
+    <div class="body">
+      <div class="name">Fire Nature Dreammate Swarm</div>
+      <div class="line"><img src="../data/icons/civs/nature.webp" alt="Nature" title="Nature"><img src="../data/icons/civs/fire.webp" alt="Fire" title="Fire"><span>40 cards &middot; updated 2026-10-19</span></div>
+      <div class="strategy">Go-wide aggro. Flood the board with cheap Dreammates and Vehicle Bees (Kabuto 1, Ralbin, Pakoneko, Rinpao) on turns 2-3. Jangaljan makes every Nature creature cost 1 less and Peach Princess makes your second creature each turn cost up to 2 less, so turns 3-5 often drop 2-3 creatures. Hopstep Battan is a 4-cost 7000 Double Breaker that survives as long as you keep playing a Dreammate or Vehicle Bee each turn. Homelos evolves onto any Dreammate and attacks immediately as a 9000 Double Breaker. Finish with Daigoku Ogre (all Dreammates and Vehicle Bees get Double Breaker) or a Lunatic Energy (+4000 to all your creatures) alpha strike. Comet Missile clears blockers.</div>
+    </div>
+  </a>
+  <a class="deck" href="water-darkness-control.html" data-search="water-darkness control water darkness cosmo politan spiral gate bloody squito energy stream gigaslug hulk crawler phantom spear zircon brain serum death chaser hopeless vortex terror pit death mendosa, dragonic baron of death aqua surfer cyber x xanadu ghoul ginus, the all-destroying fear lord olzekia, general of decapitation">
+    <div class="cover"><img src="../data/images/2258.webp" alt="" loading="lazy"></div>
+    <div class="body">
+      <div class="name">Water-Darkness Control</div>
+      <div class="line"><img src="../data/icons/civs/water.webp" alt="Water" title="Water"><img src="../data/icons/civs/darkness.webp" alt="Darkness" title="Darkness"><span>40 cards &middot; updated 2026-10-19</span></div>
+      <div class="strategy">Classic draw-go control. Turns 2-4: wall up with blockers (Cosmo Politan draws when it blocks, Bloody Squito is a 4000-power wall for 2, Gigaslug&#x27;s Slayer kills whatever it blocks, Hulk Crawler and Phantom Spear Zircon draw on entry). Use Energy Stream and Brain Serum to keep land drops and answers flowing. Mid-game: kill or bounce every real threat with Spiral Gate, Death Chaser, Hopeless Vortex and Terror Pit; Death Mendosa and Aqua Surfer are removal stapled to bodies. 15 Shield Triggers punish rush. Late game: land 7-cost double breakers that also remove creatures as they enter (Cyber X Xanadu tucks a creature to the bottom of the deck, Ghoul Ginus trades a shield for a kill, Olzekia sacrifices a used-up blocker so the opponent destroys 2 creatures), then close out once their board is empty. Mulligan/keep tips: you want a 2-cost blocker or Spiral Gate plus both civilizations in early mana. Put spare Cosmo Politans or excess 7-drops into mana early.</div>
+    </div>
+  </a>
+  <a class="deck" href="armored-dragon-overlords.html" data-search="armored dragon overlords fire nature faerie life bronze-arm tribe cocco lupia volcanic arrows totto pipicchi natural snare bolshack nex super dragon machine dolzark bolmeteus musha dragon bolshack yamato dragon velyrika dragon valkerios dragon überdragon bash mikazuchi überdragon valkyrias überdragon bajula">
+    <div class="cover"><img src="../data/images/1144.webp" alt="" loading="lazy"></div>
+    <div class="body">
+      <div class="name">Armored Dragon Overlords</div>
+      <div class="line"><img src="../data/icons/civs/fire.webp" alt="Fire" title="Fire"><img src="../data/icons/civs/nature.webp" alt="Nature" title="Nature"><span>40 cards &middot; updated 2026-10-19</span></div>
+      <div class="strategy">Fire/Nature Armored Dragon ramp. Turns 2-3: Faerie Life, Bronze-Arm Tribe and Cocco Lupia (Dragons cost 2 less, minimum 2). From turn 4 drop 6-cost Armored Dragons, then evolve them into Überdragons. Bolshack NEX pulls a Cocco Lupia from the deck straight into the battle zone. Velyrika Dragon tutors more Armored Dragons. Valkerios Dragon is free once 2+ Armored Dragons are in play. Überdragon Bash Mikazuchi costs 3 with Cocco and makes the opponent destroy one of their own creatures whenever they attack. Überdragon Valkyrias cheats a Dragon from mana into play. Überdragon Bajula triple-breaks and destroys mana. Totto Pipicchi gives every Dragon speed attacker. Removal: Volcanic Arrows, Natural Snare, Bolmeteus Musha Dragon and Dolzark (whenever another Dragon attacks, sends a creature with 5000 or less power to mana). Mulligan for ramp or Cocco Lupia. Putting a 6-drop Dragon in mana early is fine because Valkyrias can bring it back.</div>
+    </div>
+  </a>
+  <a class="deck" href="fire-nature-speed-rush-dm-01-to-dm-12.html" data-search="fire nature speed rush (dm-01 to dm-12) fire nature gonta, the warrior savage brawler zyler burning mane adventure boar barkwhip, the smasher pyrofighter magnus armored blaster valdios hypersprint warrior uzesol mezger, commando leader mykee&#x27;s pliers crimson hammer comet missile tornado flame">
+    <div class="cover"><img src="../data/images/0124.webp" alt="" loading="lazy"></div>
+    <div class="body">
+      <div class="name">Fire Nature Speed Rush (DM-01 to DM-12)</div>
+      <div class="line"><img src="../data/icons/civs/fire.webp" alt="Fire" title="Fire"><img src="../data/icons/civs/nature.webp" alt="Nature" title="Nature"><span>40 cards &middot; updated 2026-10-19</span></div>
+      <div class="strategy">Hyper-aggressive Fire/Nature rush. Turn 2: drop a 2-cost Human or Beast Folk (Gonta 4000 is the best, being both races). Turn 3+: evolve and attack immediately (Barkwhip 5000 on Beast Folk for 2; Armored Blaster Valdios 6000 double breaker on Humans for 4, which also pumps other Humans), or add haste with Pyrofighter Magnus (3-cost speed attacker that returns to hand each turn so it can be replayed), Hypersprint Warrior Uzesol (attacks at 5000) and Mezger (Human speed attacker that can be evolved into Valdios). Mykee&#x27;s Pliers gives every Nature creature speed attacker, so all the Nature 2-drops and Barkwhip can attack the turn they land. Comet Missile and Crimson Hammer clear blockers and small defenders; Comet Missile and Tornado Flame double as shield triggers. Mulligan/keep: hands with 2+ two-drops. Prioritize Fire in mana (29 Fire vs 15 Nature), and put Gonta in mana only as a last resort since it enters tapped.</div>
+    </div>
+  </a>
+</main>
+
+<script>
+  const filter = document.getElementById("filter");
+  filter.addEventListener("input", () => {
+    const q = filter.value.trim().toLowerCase();
+    document.querySelectorAll(".deck").forEach(d => {
+      d.style.display = !q || d.dataset.search.includes(q) ? "" : "none";
+    });
+  });
+</script>
+</body>
+</html>

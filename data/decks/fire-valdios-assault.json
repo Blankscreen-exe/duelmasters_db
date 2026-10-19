@@ -1,0 +1,106 @@
+{
+  "slug": "fire-valdios-assault",
+  "name": "Fire Valdios Assault",
+  "strategy": "Fire-led evolution beatdown with Armored Blaster Valdios as the early boss. Turns 2-3: Human bases (Brawler Zyler, Gonta, Explosive Dude Joe, Brad) and Faerie Life ramp. Turn 3-4: evolve into Divine Machine Armor Valborg (3-cost Double Breaker) or Valdios (Double Breaker, other Humans +1000). Blockers get cleared by Brad (silent skill), Wind Axe (also ramps) and The Strong Crush (draws a card with a 6000+ creature out); Valkaizer and Searing Wave clear small attackers. Nature only ramps and supplies Barkwhip and Fighter Dual Fang, which go on Gonta or Wind Axe (both Human and Beast Folk). Ucarn and Fighter Dual Fang are the heavy hitters; Peacock Breath turns the whole board into Double Breakers for the final swing.",
+  "notes": "User direction: Fire attackers first, Valdios as main early boss, Fire creatures that destroy creatures and blockers; Nature only for mana plus Barkwhip and Fighter Dual Fang. 43 cards (house rule 40-50). Beast Folk evolutions rely on 7 dual Human/Beast Folk bases (Gonta x4, Wind Axe x3). Weaknesses: only 4 Shield Triggers, Searing Wave costs a shield, Brad must attack (be tapped) before his skill works. Swap options: Comet Missile (Shield Trigger blocker removal), Tornado Flame (Shield Trigger removal), Shock Trooper Mykee (Human speed attacker with removal), Bronze-Arm Tribe (Nature ramp creature and Beast Folk base), Armored Raider Gandaval (Human evolution Double Breaker).",
+  "valid": true,
+  "total_cards": 43,
+  "civilizations": [
+    "Fire",
+    "Nature"
+  ],
+  "created": "2026-10-19T08:24:36+00:00",
+  "updated": "2026-10-19T08:24:36+00:00",
+  "cards": [
+    {
+      "id": "0080",
+      "name": "Brawler Zyler",
+      "count": 4,
+      "image_path": "data/images/0080.webp"
+    },
+    {
+      "id": "0775",
+      "name": "Gonta, the Warrior Savage",
+      "count": 4,
+      "image_path": "data/images/0775.webp"
+    },
+    {
+      "id": "0733",
+      "name": "Brad, Super Kickin' Dynamo",
+      "count": 3,
+      "image_path": "data/images/0733.webp"
+    },
+    {
+      "id": "0223",
+      "name": "Explosive Dude Joe",
+      "count": 3,
+      "image_path": "data/images/0223.webp"
+    },
+    {
+      "id": "0777",
+      "name": "Wind Axe, the Warrior Savage",
+      "count": 3,
+      "image_path": "data/images/0777.webp"
+    },
+    {
+      "id": "0124",
+      "name": "Armored Blaster Valdios",
+      "count": 4,
+      "image_path": "data/images/0124.webp"
+    },
+    {
+      "id": "2350",
+      "name": "Divine Machine Armor Valborg",
+      "count": 2,
+      "image_path": "data/images/2350.webp"
+    },
+    {
+      "id": "0441",
+      "name": "Armored Decimator Valkaizer",
+      "count": 2,
+      "image_path": "data/images/0441.webp"
+    },
+    {
+      "id": "0170",
+      "name": "Barkwhip, the Smasher",
+      "count": 2,
+      "image_path": "data/images/0170.webp"
+    },
+    {
+      "id": "0125",
+      "name": "Fighter Dual Fang",
+      "count": 3,
+      "image_path": "data/images/0125.webp"
+    },
+    {
+      "id": "0086",
+      "name": "Explosive Fighter Ucarn",
+      "count": 3,
+      "image_path": "data/images/0086.webp"
+    },
+    {
+      "id": "0468",
+      "name": "Faerie Life",
+      "count": 4,
+      "image_path": "data/images/0468.webp"
+    },
+    {
+      "id": "0226",
+      "name": "Searing Wave",
+      "count": 2,
+      "image_path": "data/images/0226.webp"
+    },
+    {
+      "id": "2409",
+      "name": "The Strong Crush",
+      "count": 2,
+      "image_path": "data/images/2409.webp"
+    },
+    {
+      "id": "2493",
+      "name": "Peacock Breath",
+      "count": 2,
+      "image_path": "data/images/2493.webp"
+    }
+  ]
+}

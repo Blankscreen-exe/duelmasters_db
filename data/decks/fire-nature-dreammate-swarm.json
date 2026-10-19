@@ -1,0 +1,88 @@
+{
+  "slug": "fire-nature-dreammate-swarm",
+  "name": "Fire Nature Dreammate Swarm",
+  "strategy": "Go-wide aggro. Flood the board with cheap Dreammates and Vehicle Bees (Kabuto 1, Ralbin, Pakoneko, Rinpao) on turns 2-3. Jangaljan makes every Nature creature cost 1 less and Peach Princess makes your second creature each turn cost up to 2 less, so turns 3-5 often drop 2-3 creatures. Hopstep Battan is a 4-cost 7000 Double Breaker that survives as long as you keep playing a Dreammate or Vehicle Bee each turn. Homelos evolves onto any Dreammate and attacks immediately as a 9000 Double Breaker. Finish with Daigoku Ogre (all Dreammates and Vehicle Bees get Double Breaker) or a Lunatic Energy (+4000 to all your creatures) alpha strike. Comet Missile clears blockers.",
+  "notes": "User request: fast attacker deck that spawns monsters rapidly and overwhelms with numbers, Fire and Nature only. Weaknesses: board wipes that hit small creatures (e.g. 'destroy all creatures with power 2000 or less'), lots of blockers (only 2 Comet Missile), no card draw so it can run out of cards in long games. Swap options: Step Step Antikon (Fire 3, Vehicle Bee, 4000 with a Dreammate), Megamusashi Dragonflyer (Fire 5, Dreammates/Vehicle Bees get power attacker +3000), Elf-X (Nature 4, all your creatures cost 1 less), Sergeant Stag Beetler (more blocker removal).",
+  "valid": true,
+  "total_cards": 40,
+  "civilizations": [
+    "Nature",
+    "Fire"
+  ],
+  "created": "2026-10-19T08:08:22+00:00",
+  "updated": "2026-10-19T08:08:22+00:00",
+  "cards": [
+    {
+      "id": "1903",
+      "name": "Kabuto 1, Armored Insectobeast",
+      "count": 4,
+      "image_path": "data/images/1903.webp"
+    },
+    {
+      "id": "1732",
+      "name": "Ralbin of Pop Mountain",
+      "count": 4,
+      "image_path": "data/images/1732.webp"
+    },
+    {
+      "id": "1464",
+      "name": "Prisoned Pakoneko",
+      "count": 4,
+      "image_path": "data/images/1464.webp"
+    },
+    {
+      "id": "1331",
+      "name": "Rinpao, King of Speed Eating",
+      "count": 4,
+      "image_path": "data/images/1331.webp"
+    },
+    {
+      "id": "1730",
+      "name": "Jangaljan, Firespirit Beetle",
+      "count": 4,
+      "image_path": "data/images/1730.webp"
+    },
+    {
+      "id": "1920",
+      "name": "Peach Princess, Fearless Faerie",
+      "count": 3,
+      "image_path": "data/images/1920.webp"
+    },
+    {
+      "id": "1419",
+      "name": "Hopstep Battan",
+      "count": 4,
+      "image_path": "data/images/1419.webp"
+    },
+    {
+      "id": "2342",
+      "name": "Homelos, Amazing Artiste",
+      "count": 3,
+      "image_path": "data/images/2342.webp"
+    },
+    {
+      "id": "1445",
+      "name": "Daigoku Ogre, Brave of Disaster",
+      "count": 2,
+      "image_path": "data/images/1445.webp"
+    },
+    {
+      "id": "1620",
+      "name": "Cuckoo Clock Coco-Cala",
+      "count": 3,
+      "image_path": "data/images/1620.webp"
+    },
+    {
+      "id": "0448",
+      "name": "Comet Missile",
+      "count": 2,
+      "image_path": "data/images/0448.webp"
+    },
+    {
+      "id": "2005",
+      "name": "Lunatic Energy",
+      "count": 3,
+      "image_path": "data/images/2005.webp"
+    }
+  ]
+}

@@ -23,7 +23,8 @@ GUIDE_PATH = Path(__file__).resolve().parent / "deckbuilding_guide.md"
 INSTRUCTIONS = """\
 Tools for the local Duel Masters card database (2,600+ cards, DM-01 to DM-35 plus promos).
 When building or improving a deck: call deckbuilding_guide first, use search_cards / find_synergies
-to pick real cards, run analyze_deck and fix its warnings, then save_deck. Only use cards returned
+to pick real cards, run analyze_deck and fix its warnings, then save_deck (which also writes
+an HTML page in decks/; tell the user its path). Only use cards returned
 by these tools. Cards can be referenced by id (e.g. "0079") or exact name. Filter values for
 keywords and categories are codes (e.g. "shield_trigger", "removal"); use list_values to look them up."""
 
@@ -127,13 +128,14 @@ TOOLS = [
     },
     {
         "name": "validate_deck",
-        "description": "Check the hard deck rules: exactly 40 cards, at most 4 copies per card name, all cards exist.",
+        "description": "Check the hard deck rules: 40-50 cards (40 is ideal), at most 4 copies per card name, all cards exist.",
         "inputSchema": {"type": "object", "properties": {"cards": DECK_CARDS_SCHEMA}, "required": ["cards"]},
         "annotations": READ_ONLY,
     },
     {
         "name": "save_deck",
-        "description": "Save a deck to data/decks/<slug>.json (card ids, counts, image paths, strategy). "
+        "description": "Save a deck to data/decks/<slug>.json (card ids, counts, image paths, strategy) "
+                       "and write its HTML page to decks/<slug>.html. "
                        "Refuses invalid decks unless allow_invalid is true, and won't replace an existing "
                        "deck unless overwrite is true.",
         "inputSchema": {
@@ -169,6 +171,21 @@ TOOLS = [
         "annotations": {"readOnlyHint": False, "destructiveHint": True, "openWorldHint": False},
     },
     {
+        "name": "export_deck_html",
+        "description": "Write decks/<slug>.html for a saved deck: a grid of card images with each name in a "
+                       "copyable box. save_deck already does this automatically; use this to refresh an "
+                       "existing deck's page. Returns the file path for the user to open in a browser.",
+        "inputSchema": {"type": "object", "properties": {"slug": {"type": "string"}}, "required": ["slug"]},
+        "annotations": {"readOnlyHint": False, "destructiveHint": False, "openWorldHint": False},
+    },
+    {
+        "name": "open_deck_listing",
+        "description": "Rebuild decks/index.html (a page listing every deck in the decks folder, each linking "
+                       "to its deck page) and open it in the user's default browser.",
+        "inputSchema": {"type": "object", "properties": {}},
+        "annotations": {"readOnlyHint": False, "destructiveHint": False, "openWorldHint": False},
+    },
+    {
         "name": "deckbuilding_guide",
         "description": "Duel Masters deck rules, building process and archetype guidelines. "
                        "Read this before building or reviewing a deck.",
@@ -181,7 +198,10 @@ PROMPTS = [
     {
         "name": "build_deck",
         "description": "Build a Duel Masters deck from a description, then analyze, validate and save it.",
-        "arguments": [{"name": "request", "description": "What kind of deck you want.", "required": True}],
+        # Optional: Claude Code splits slash-command text on spaces, so a multi-word request only
+        # arrives intact when quoted. Without it, Claude asks the user instead.
+        "arguments": [{"name": "request", "description": "What kind of deck you want (wrap in quotes).",
+                       "required": False}],
     },
 ]
 
@@ -200,6 +220,8 @@ class Server:
             "list_decks": lambda a: self.db.list_decks(),
             "get_deck": lambda a: self.db.get_deck(a.get("slug")),
             "delete_deck": lambda a: self.db.delete_deck(a.get("slug")),
+            "export_deck_html": lambda a: self.db.export_deck_html(a.get("slug")),
+            "open_deck_listing": lambda a: self.db.open_deck_listing(),
             "deckbuilding_guide": lambda a: GUIDE_PATH.read_text(encoding="utf-8"),
         }
 
@@ -260,11 +282,15 @@ class Server:
     def get_prompt(self, params):
         if params.get("name") != "build_deck":
             raise RpcError(-32602, f"Unknown prompt: {params.get('name')}")
-        request = (params.get("arguments") or {}).get("request") or "a strong, consistent deck"
+        request = ((params.get("arguments") or {}).get("request") or "").strip()
         guide = GUIDE_PATH.read_text(encoding="utf-8")
-        text = (f"Build a Duel Masters deck for this request:\n\n{request}\n\n"
-                f"Follow the guide below. Use the duelmasters tools for every card choice, run analyze_deck "
-                f"and fix its warnings, validate, save with save_deck, then explain the deck.\n\n{guide}")
+        if request:
+            ask = (f"Build a Duel Masters deck for this request:\n\n{request}\n\n"
+                   f"If the request looks cut off or too vague to act on, ask the user what they want first.")
+        else:
+            ask = "Build a Duel Masters deck. First ask the user what kind of deck they want."
+        text = (f"{ask}\n\nFollow the guide below. Use the duelmasters tools for every card choice, run "
+                f"analyze_deck and fix its warnings, validate, save with save_deck, then explain the deck.\n\n{guide}")
         return {"description": "Build a Duel Masters deck",
                 "messages": [{"role": "user", "content": {"type": "text", "text": text}}]}
 

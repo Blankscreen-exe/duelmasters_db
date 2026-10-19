@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fire Nature Speed Rush (DM-01 to DM-12)</title>
+<style>
+  :root { --bg: #14161b; --panel: #1e2129; --text: #e8e8ea; --muted: #9a9ca3; --accent: #e8a33a; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+         font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  header { padding: 18px 32px 8px; }
+  .crumbs { font-size: 13px; color: var(--muted); margin-bottom: 10px; display: flex; gap: 8px; }
+  .crumbs a { color: var(--accent); text-decoration: none; }
+  .crumbs a:hover { text-decoration: underline; }
+  h1 { margin: 0 0 6px; font-size: 26px; }
+  .meta { color: var(--muted); font-size: 14px; display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+  .meta img { width: 18px; height: 18px; vertical-align: middle; }
+  details { margin: 12px 0 0; max-width: 900px; color: var(--muted); font-size: 14px; line-height: 1.5; }
+  summary { cursor: pointer; color: var(--text); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+          gap: 20px; padding: 20px 32px 40px; }
+  .card { background: var(--panel); border-radius: 10px; padding: 10px; display: flex;
+          flex-direction: column; gap: 8px; }
+  .art { position: relative; }
+  .art img { width: 100%; aspect-ratio: 5 / 7; object-fit: cover; border-radius: 6px; display: block;
+             background: #2a2e38; }
+  .count { margin-left: auto; background: var(--accent); color: #1a1205; font-weight: 700;
+           font-size: 13px; padding: 1px 9px; border-radius: 999px; }
+  .info { color: var(--muted); font-size: 12px; display: flex; gap: 6px; align-items: center; }
+  .info img { width: 14px; height: 14px; }
+  .name { position: relative; }
+  .name input { width: 100%; padding: 8px 36px 8px 10px; border-radius: 6px; border: 1px solid #343846;
+                background: #12141a; color: var(--text); font-size: 13px; }
+  .name button { position: absolute; right: 4px; top: 50%; transform: translateY(-50%);
+                 border: 0; background: transparent; color: var(--muted); cursor: pointer;
+                 padding: 5px; border-radius: 4px; display: flex; }
+  .name button:hover { color: var(--text); background: #2a2e38; }
+  .name button.copied { color: #4cc38a; }
+  .toast { position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%); background: #4cc38a;
+           color: #08130d; font-weight: 600; padding: 8px 16px; border-radius: 6px; opacity: 0;
+           transition: opacity .2s; pointer-events: none; }
+  .toast.show { opacity: 1; }
+  .art img { cursor: zoom-in; transition: transform .15s; }
+  .art img:hover { transform: scale(1.02); }
+  .viewer { position: fixed; inset: 0; background: rgba(5, 6, 9, .9); display: none;
+            flex-direction: column; align-items: center; justify-content: center; gap: 14px; z-index: 10; }
+  .viewer.open { display: flex; }
+  .viewer img { max-height: 84vh; max-width: 92vw; border-radius: 14px; box-shadow: 0 10px 50px rgba(0,0,0,.6);
+                cursor: zoom-out; }
+  .viewer .caption { color: var(--text); font-size: 16px; display: flex; gap: 10px; align-items: center; }
+  .viewer button { position: absolute; border: 0; background: rgba(255,255,255,.1); color: #fff;
+                   font-size: 26px; width: 48px; height: 48px; border-radius: 50%; cursor: pointer; }
+  .viewer button:hover { background: rgba(255,255,255,.22); }
+  .viewer .close { top: 18px; right: 18px; font-size: 22px; }
+  .viewer .prev { left: 18px; top: 50%; transform: translateY(-50%); }
+  .viewer .next { right: 18px; top: 50%; transform: translateY(-50%); }
+</style>
+</head>
+<body>
+<header>
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">All decks</a><span>&rsaquo;</span><span>Fire Nature Speed Rush (DM-01 to DM-12)</span></nav>
+  <h1>Fire Nature Speed Rush (DM-01 to DM-12)</h1>
+  <div class="meta"><span>40 cards</span><span>13 unique</span><span><img src="../data/icons/civs/fire.webp" alt="Fire" title="Fire"> Fire <img src="../data/icons/civs/nature.webp" alt="Nature" title="Nature"> Nature</span></div>
+  <details><summary>Strategy &amp; notes</summary><p><b>Strategy:</b> Hyper-aggressive Fire/Nature rush. Turn 2: drop a 2-cost Human or Beast Folk (Gonta 4000 is the best, being both races). Turn 3+: evolve and attack immediately (Barkwhip 5000 on Beast Folk for 2; Armored Blaster Valdios 6000 double breaker on Humans for 4, which also pumps other Humans), or add haste with Pyrofighter Magnus (3-cost speed attacker that returns to hand each turn so it can be replayed), Hypersprint Warrior Uzesol (attacks at 5000) and Mezger (Human speed attacker that can be evolved into Valdios). Mykee&#x27;s Pliers gives every Nature creature speed attacker, so all the Nature 2-drops and Barkwhip can attack the turn they land. Comet Missile and Crimson Hammer clear blockers and small defenders; Comet Missile and Tornado Flame double as shield triggers. Mulligan/keep: hands with 2+ two-drops. Prioritize Fire in mana (29 Fire vs 15 Nature), and put Gonta in mana only as a last resort since it enters tapped.</p><p><b>Notes:</b> User request: aggressive Fire/Nature rush, wins fast with Speed Attackers, sets DM-01 to DM-12 only. Weaknesses: low power creatures fold to mass removal of 2000-or-less power (e.g. Vorg&#x27;s Engine-style effects) and to opposing shield triggers; no card draw, so a stalled board runs out of gas; only 4 shield triggers. Swap options: Twin-Cannon Skyterror (7-cost speed double breaker) for late reach, Torcon (Beast Folk shield-trigger creature) for more defense, Volcanic Arrows for bigger removal, Bombat, General of Speed as another speed attacker.</p></details>
+</header>
+<main class="grid">
+  <div class="card">
+    <div class="art"><img src="../data/images/0448.webp" alt="Comet Missile" loading="lazy"></div>
+    <div class="info"><img src="../data/icons/civs/fire.webp" alt="Fire" title="Fire"><span>Cost 1 &middot; Spell</span><span class="count">&times;2</span></div>
+    <div class="name"><input type="text" value="Comet Missile" title="Comet Missile" readonly aria-label="Card name"><button type="button" title="Copy name" aria-label="Copy name"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H8V7h11v14z"/></svg></button></div>
+  </div>
+  <div class="card">
+    <div class="art"><img src="../data/images/0749.webp" alt="Adventure Boar" loading="lazy"></div>
+    <div class="info"><img src="../data/icons/civs/nature.webp" alt="Nature" title="Nature"><span>Cost 2 &middot; Creature</span><span class="count">&times;4</span></div>
+    <div class="name"><input type="text" value="Adventure Boar" title="Adventure Boar" readonly aria-label="Card name"><button type="button" title="Copy name" aria-label="Copy name"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H8V7h11v14z"/></svg></button></div>
+  </div>
+  <div class="card">
+    <div class="art"><img src="../data/images/0170.webp" alt="Barkwhip, the Smasher" loading="lazy"></div>
+    <div class="info"><img src="../data/icons/civs/nature.webp" alt="Nature" title="Nature"><span>Cost 2 &middot; Evolution Creature</span><span class="count">&times;3</span></div>
+    <div class="name"><input type="text" value="Barkwhip, the Smasher" title="Barkwhip, the Smasher" readonly aria-label="Card name"><button type="button" title="Copy name" aria-label="Copy name"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H8V7h11v14z"/></svg></button></div>
+  </div>
+  <div class="card">
+    <div class="art"><img src="../data/images/0080.webp" alt="Brawler Zyler" loading="lazy"></div>
+    <div class="info"><img src="../data/icons/civs/fire.webp" alt="Fire" title="Fire"><span>Cost 2 &middot; Creature</span><span class="count">&times;4</span></div>
+    <div class="name"><input type="text" value="Brawler Zyler" title="Brawler Zyler" readonly aria-label="Card name"><button type="button" title="Copy name" aria-label="Copy name"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H8V7h11v14z"/></svg></button></div>
+  </div>
+  <div class="card">
+    <div class="art"><img src="../data/images/0101.webp" alt="Burning Mane" loading="lazy"></div>
+    <div class="info"><img src="../data/icons/civs/nature.webp" alt="Nature" title="Nature"><span>Cost 2 &middot; Creature</span><span class="count">&times;4</span></div>
+    <div class="name"><input type="text" value="Burning Mane" title="Burning Mane" readonly aria-label="Card name"><button type="button" title="Copy name" aria-label="Copy name"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H8V7h11v14z"/></svg></button></div>
+  </div>
+  <div class="card">
+    <div class="art"><img src="../data/images/0083.webp" alt="Crimson Hammer" loading="lazy"></div>
+    <div class="info"><img src="../data/icons/civs/fire.webp" alt="Fire" title="Fire"><span>Cost 2 &middot; Spell</span><span class="count">&times;2</span></div>
+    <div class="name"><input type="text" value="Crimson Hammer" title="Crimson Hammer" readonly aria-label="Card name"><button type="button" title="Copy name" aria-label="Copy name"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H8V7h11v14z"/></svg></button></div>
+  </div>
+  <div class="card">
+    <div class="art"><img src="../data/images/0775.webp" alt="Gonta, the Warrior Savage" loading="lazy"></div>
+    <div class="info"><img src="../data/icons/civs/fire.webp" alt="Fire" title="Fire"><img src="../data/icons/civs/nature.webp" alt="Nature" title="Nature"><span>Cost 2 &middot; Creature</span><span class="count">&times;4</span></div>
+    <div class="name"><input type="text" value="Gonta, the Warrior Savage" title="Gonta, the Warrior Savage" readonly aria-label="Card name"><button type="button" title="Copy name" aria-label="Copy name"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H8V7h11v14z"/></svg></button></div>
+  </div>
+  <div class="card">
+    <div class="art"><img src="../data/images/0455.webp" alt="Pyrofighter Magnus" loading="lazy"></div>
+    <div class="info"><img src="../data/icons/civs/fire.webp" alt="Fire" title="Fire"><span>Cost 3 &middot; Creature</span><span class="count">&times;4</span></div>
+    <div class="name"><input type="text" value="Pyrofighter Magnus" title="Pyrofighter Magnus" readonly aria-label="Card name"><button type="button" title="Copy name" aria-label="Copy name"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H8V7h11v14z"/></svg></button></div>
+  </div>
+  <div class="card">
+    <div class="art"><img src="../data/images/0124.webp" alt="Armored Blaster Valdios" loading="lazy"></div>
+    <div class="info"><img src="../data/icons/civs/fire.webp" alt="Fire" title="Fire"><span>Cost 4 &middot; Evolution Creature</span><span class="count">&times;4</span></div>
+    <div class="name"><input type="text" value="Armored Blaster Valdios" title="Armored Blaster Valdios" readonly aria-label="Card name"><button type="button" title="Copy name" aria-label="Copy name"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H8V7h11v14z"/></svg></button></div>
+  </div>
+  <div class="card">
+    <div class="art"><img src="../data/images/0894.webp" alt="Hypersprint Warrior Uzesol" loading="lazy"></div>
+    <div class="info"><img src="../data/icons/civs/fire.webp" alt="Fire" title="Fire"><span>Cost 4 &middot; Creature</span><span class="count">&times;3</span></div>
+    <div class="name"><input type="text" value="Hypersprint Warrior Uzesol" title="Hypersprint Warrior Uzesol" readonly aria-label="Card name"><button type="button" title="Copy name" aria-label="Copy name"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H8V7h11v14z"/></svg></button></div>
+  </div>
+  <div class="card">
+    <div class="art"><img src="../data/images/0740.webp" alt="Mezger, Commando Leader" loading="lazy"></div>
+    <div class="info"><img src="../data/icons/civs/fire.webp" alt="Fire" title="Fire"><span>Cost 4 &middot; Creature</span><span class="count">&times;2</span></div>
+    <div class="name"><input type="text" value="Mezger, Commando Leader" title="Mezger, Commando Leader" readonly aria-label="Card name"><button type="button" title="Copy name" aria-label="Copy name"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H8V7h11v14z"/></svg></button></div>
+  </div>
+  <div class="card">
+    <div class="art"><img src="../data/images/0742.webp" alt="Mykee&#x27;s Pliers" loading="lazy"></div>
+    <div class="info"><img src="../data/icons/civs/fire.webp" alt="Fire" title="Fire"><span>Cost 4 &middot; Creature</span><span class="count">&times;2</span></div>
+    <div class="name"><input type="text" value="Mykee&#x27;s Pliers" title="Mykee&#x27;s Pliers" readonly aria-label="Card name"><button type="button" title="Copy name" aria-label="Copy name"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H8V7h11v14z"/></svg></button></div>
+  </div>
+  <div class="card">
+    <div class="art"><img src="../data/images/0098.webp" alt="Tornado Flame" loading="lazy"></div>
+    <div class="info"><img src="../data/icons/civs/fire.webp" alt="Fire" title="Fire"><span>Cost 5 &middot; Spell</span><span class="count">&times;2</span></div>
+    <div class="name"><input type="text" value="Tornado Flame" title="Tornado Flame" readonly aria-label="Card name"><button type="button" title="Copy name" aria-label="Copy name"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H8V7h11v14z"/></svg></button></div>
+  </div>
+</main>
+<div class="toast" id="toast">Copied</div>
+<div class="viewer" id="viewer" role="dialog" aria-modal="true" aria-label="Card viewer">
+  <button type="button" class="close" title="Close (Esc)" aria-label="Close">&#x2715;</button>
+  <button type="button" class="prev" title="Previous (Left arrow)" aria-label="Previous card">&#x2039;</button>
+  <img id="viewer-img" alt="">
+  <div class="caption"><span id="viewer-name"></span><span class="count" id="viewer-count"></span></div>
+  <button type="button" class="next" title="Next (Right arrow)" aria-label="Next card">&#x203A;</button>
+</div>
+<script>
+  const toast = document.getElementById("toast");
+  function fallbackCopy(input) {
+    input.select();
+    document.execCommand("copy");
+    input.setSelectionRange(0, 0);
+  }
+  document.querySelectorAll(".name button").forEach(btn => {
+    btn.addEventListener("click", async () => {
+      const input = btn.previousElementSibling;
+      try { await navigator.clipboard.writeText(input.value); } catch (e) { fallbackCopy(input); }
+      btn.classList.add("copied");
+      toast.textContent = "Copied: " + input.value;
+      toast.classList.add("show");
+      setTimeout(() => { btn.classList.remove("copied"); toast.classList.remove("show"); }, 1200);
+    });
+  });
+
+  // Click a card to enlarge it; Esc / click closes, arrow keys step through the deck.
+  const viewer = document.getElementById("viewer");
+  const viewerImg = document.getElementById("viewer-img");
+  const cards = Array.from(document.querySelectorAll(".card"));
+  let current = -1;
+  function show(i) {
+    current = (i + cards.length) % cards.length;
+    const card = cards[current];
+    const img = card.querySelector(".art img");
+    viewerImg.src = img.src;
+    viewerImg.alt = img.alt;
+    document.getElementById("viewer-name").textContent = img.alt;
+    document.getElementById("viewer-count").textContent = card.querySelector(".count").textContent;
+    viewer.classList.add("open");
+  }
+  function hide() { viewer.classList.remove("open"); current = -1; }
+  cards.forEach((card, i) => card.querySelector(".art img").addEventListener("click", () => show(i)));
+  viewer.querySelector(".close").addEventListener("click", hide);
+  viewer.querySelector(".prev").addEventListener("click", e => { e.stopPropagation(); show(current - 1); });
+  viewer.querySelector(".next").addEventListener("click", e => { e.stopPropagation(); show(current + 1); });
+  viewer.addEventListener("click", e => { if (e.target === viewer || e.target === viewerImg) hide(); });
+  document.addEventListener("keydown", e => {
+    if (current < 0) return;
+    if (e.key === "Escape") hide();
+    else if (e.key === "ArrowLeft") show(current - 1);
+    else if (e.key === "ArrowRight") show(current + 1);
+  });
+  // Open a card straight away with a link like deck.html#card-3
+  const m = location.hash.match(/^#card-(\d+)$/);
+  if (m && cards[m[1] - 1]) show(m[1] - 1);
+</script>
+</body>
+</html>
