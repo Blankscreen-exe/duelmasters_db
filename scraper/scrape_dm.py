@@ -13,6 +13,7 @@ Usage (from the project root):
 Output:
     data/duelmasters.db      SQLite database
     data/images/<id>.webp    card images
+    data/icons/...           civilization / rarity / set / keyword icons + site banner
     data/videos/<id>.mp4     card videos (only with --videos)
     data/cards.json          denormalized JSON export (handy for game engines)
 """
@@ -338,6 +339,13 @@ CREATE TABLE IF NOT EXISTS card_categories (
     PRIMARY KEY (card_id, category)
 );
 
+CREATE TABLE IF NOT EXISTS icons (
+    kind  TEXT,    -- 'civs', 'rarities', 'sets', 'keywords', 'site'
+    code  TEXT,    -- matches: lower(civilization), cards.rarity_code, sets.icon, card_abilities.keyword_icon
+    path  TEXT,    -- relative to data/, e.g. 'icons/civs/fire.webp'
+    PRIMARY KEY (kind, code)
+);
+
 CREATE INDEX IF NOT EXISTS idx_cards_name ON cards(name);
 CREATE INDEX IF NOT EXISTS idx_cards_set  ON cards(set_code);
 CREATE INDEX IF NOT EXISTS idx_civ        ON card_civilizations(civilization);
@@ -523,8 +531,59 @@ def download_files(db, args, label, rows, folder, column):
         print(f"      {failed} failed (rerun the script to retry)", flush=True)
 
 
+SITE_ASSETS = ["dmdb-banner.webp", "favicon.ico"]
+
+
+def icon_code(kind, path):
+    stem = Path(path).stem
+    return stem.replace("rarity-", "") if kind == "rarities" else stem
+
+
+def step_icons(db, args, search_html):
+    """Download civ/rarity/set/keyword icons (+ site banner) into data/icons/."""
+    paths = set()
+    for img in parse_html(search_html).find_all("img"):
+        p = urllib.parse.urlparse(img.attrs.get("src", "")).path.lstrip("/")
+        if p.startswith("icons/"):
+            paths.add(p)
+    for (kw,) in db.execute("SELECT DISTINCT keyword_icon FROM card_abilities WHERE keyword_icon IS NOT NULL"):
+        paths.add(f"icons/keywords/{kw}.webp")
+    print(f"[4a]  Downloading icons ({len(paths) + len(SITE_ASSETS)}) ...", flush=True)
+
+    jobs = [(p, DATA_DIR / p) for p in sorted(paths)]
+    jobs += [(p, DATA_DIR / "icons" / "site" / p) for p in SITE_ASSETS]
+
+    def run(job):
+        src, dest = job
+        if dest.exists() and dest.stat().st_size > 0:
+            return job, True
+        data = fetch(f"{BASE_URL}/{src}", args.delay, binary=True)
+        if not data:
+            return job, False
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        dest.write_bytes(data)
+        return job, True
+
+    failed = []
+    with ThreadPoolExecutor(max_workers=args.workers) as pool:
+        for fut in as_completed([pool.submit(run, j) for j in jobs]):
+            (src, dest), ok = fut.result()
+            if not ok:
+                failed.append(src)
+                continue
+            rel = dest.relative_to(DATA_DIR).as_posix()
+            kind = rel.split("/")[1]
+            db.execute("INSERT OR REPLACE INTO icons VALUES (?, ?, ?)",
+                       (kind, icon_code(kind, rel), rel))
+    db.commit()
+    if failed:
+        print(f"      {len(failed)} failed: {failed}", flush=True)
+
+
 def step_export_json(db):
     print("[5/5] Writing cards.json ...", flush=True)
+    icons = {(k, c): p for k, c, p in db.execute("SELECT kind, code, path FROM icons")}
+    set_icons = dict(db.execute("SELECT code, icon FROM sets"))
     db.row_factory = sqlite3.Row
     cards = []
     for r in db.execute("SELECT * FROM cards ORDER BY id"):
@@ -539,6 +598,12 @@ def step_export_json(db):
             "SELECT keyword FROM card_keywords WHERE card_id=? ORDER BY keyword", (cid,))]
         c["categories"] = [k[0] for k in db.execute(
             "SELECT category FROM card_categories WHERE card_id=? ORDER BY category", (cid,))]
+        c["icons"] = {
+            "civilizations": [icons.get(("civs", v.lower())) for v in c["civilizations"]],
+            "rarity": icons.get(("rarities", c["rarity_code"])),
+            "set": icons.get(("sets", set_icons.get(c["set_code"]))),
+            "abilities": [icons.get(("keywords", a["keyword_icon"])) for a in c["abilities"]],
+        }
         del c["detail_fetched"]
         cards.append(c)
     db.row_factory = None
@@ -565,8 +630,9 @@ def main():
         step_tags(db, args, search_html, card_ids)
     step_details(db, args, card_ids)
 
+    step_icons(db, args, search_html)
     if not args.skip_images:
-        rows = [(cid, IMG_URL.format(id=cid)) for cid in sorted(card_ids)]
+        rows =[(cid, IMG_URL.format(id=cid)) for cid in sorted(card_ids)]
         download_files(db, args, "[4/5] Downloading images", rows, IMG_DIR, "image_path")
     if args.videos:
         rows = db.execute("SELECT id, video_url FROM cards WHERE video_url IS NOT NULL").fetchall()

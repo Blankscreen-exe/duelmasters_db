@@ -19,6 +19,7 @@ Standard-library Python only, no `pip install` needed.
 |---|---|
 | `data/duelmasters.db` | SQLite database |
 | `data/images/<id>.webp` | Card images, named by card id |
+| `data/icons/` | Site icons: `civs/` (5), `rarities/` (5), `sets/` (35 booster/set icons), `keywords/` (16 ability bullets), `site/` (banner, favicon) |
 | `data/cards.json` | Same data as one JSON array (easy to load into Unity/Godot/JS) |
 
 ## Schema
@@ -30,6 +31,12 @@ Standard-library Python only, no `pip install` needed.
 - **keywords** + **card_keywords**: Blocker, Shield Trigger, Double Breaker, Speed Attacker, ...
 - **categories** + **card_categories**: effect tags such as removal, draw, ramp, triggers, ...
 - **sets**
+- **icons**: `(kind, code, path)` lookup. `code` matches `lower(civilization)`, `cards.rarity_code`,
+  `sets.icon`, or `card_abilities.keyword_icon`. In `cards.json`, each card also has an `icons` object
+  with these paths already filled in.
+
+Not every value has an icon: the site has none for cards without a rarity (93 cards) or for the
+28 keywords that never show a bullet icon.
 
 `card_type` is normalized: the site has typos like "Creatue", but the raw value is kept in `card_type_raw`.
 
