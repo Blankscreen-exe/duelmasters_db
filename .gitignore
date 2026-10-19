@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+.venv/
+*.part
+data/scrape.log
+data/videos/
