@@ -1,0 +1,94 @@
+{
+  "slug": "fire-nature-speed-rush-dm-01-to-dm-12",
+  "name": "Fire Nature Speed Rush (DM-01 to DM-12)",
+  "strategy": "Hyper-aggressive Fire/Nature rush. Turn 2: drop a 2-cost Human or Beast Folk (Gonta 4000 is the best, being both races). Turn 3+: evolve and attack immediately (Barkwhip 5000 on Beast Folk for 2; Armored Blaster Valdios 6000 double breaker on Humans for 4, which also pumps other Humans), or add haste with Pyrofighter Magnus (3-cost speed attacker that returns to hand each turn so it can be replayed), Hypersprint Warrior Uzesol (attacks at 5000) and Mezger (Human speed attacker that can be evolved into Valdios). Mykee's Pliers gives every Nature creature speed attacker, so all the Nature 2-drops and Barkwhip can attack the turn they land. Comet Missile and Crimson Hammer clear blockers and small defenders; Comet Missile and Tornado Flame double as shield triggers. Mulligan/keep: hands with 2+ two-drops. Prioritize Fire in mana (29 Fire vs 15 Nature), and put Gonta in mana only as a last resort since it enters tapped.",
+  "notes": "User request: aggressive Fire/Nature rush, wins fast with Speed Attackers, sets DM-01 to DM-12 only. Weaknesses: low power creatures fold to mass removal of 2000-or-less power (e.g. Vorg's Engine-style effects) and to opposing shield triggers; no card draw, so a stalled board runs out of gas; only 4 shield triggers. Swap options: Twin-Cannon Skyterror (7-cost speed double breaker) for late reach, Torcon (Beast Folk shield-trigger creature) for more defense, Volcanic Arrows for bigger removal, Bombat, General of Speed as another speed attacker.",
+  "valid": true,
+  "total_cards": 40,
+  "civilizations": [
+    "Fire",
+    "Nature"
+  ],
+  "created": "2026-10-19T07:58:00+00:00",
+  "updated": "2026-10-19T07:58:00+00:00",
+  "cards": [
+    {
+      "id": "0775",
+      "name": "Gonta, the Warrior Savage",
+      "count": 4,
+      "image_path": "data/images/0775.webp"
+    },
+    {
+      "id": "0080",
+      "name": "Brawler Zyler",
+      "count": 4,
+      "image_path": "data/images/0080.webp"
+    },
+    {
+      "id": "0101",
+      "name": "Burning Mane",
+      "count": 4,
+      "image_path": "data/images/0101.webp"
+    },
+    {
+      "id": "0749",
+      "name": "Adventure Boar",
+      "count": 4,
+      "image_path": "data/images/0749.webp"
+    },
+    {
+      "id": "0170",
+      "name": "Barkwhip, the Smasher",
+      "count": 3,
+      "image_path": "data/images/0170.webp"
+    },
+    {
+      "id": "0455",
+      "name": "Pyrofighter Magnus",
+      "count": 4,
+      "image_path": "data/images/0455.webp"
+    },
+    {
+      "id": "0124",
+      "name": "Armored Blaster Valdios",
+      "count": 4,
+      "image_path": "data/images/0124.webp"
+    },
+    {
+      "id": "0894",
+      "name": "Hypersprint Warrior Uzesol",
+      "count": 3,
+      "image_path": "data/images/0894.webp"
+    },
+    {
+      "id": "0740",
+      "name": "Mezger, Commando Leader",
+      "count": 2,
+      "image_path": "data/images/0740.webp"
+    },
+    {
+      "id": "0742",
+      "name": "Mykee's Pliers",
+      "count": 2,
+      "image_path": "data/images/0742.webp"
+    },
+    {
+      "id": "0083",
+      "name": "Crimson Hammer",
+      "count": 2,
+      "image_path": "data/images/0083.webp"
+    },
+    {
+      "id": "0448",
+      "name": "Comet Missile",
+      "count": 2,
+      "image_path": "data/images/0448.webp"
+    },
+    {
+      "id": "0098",
+      "name": "Tornado Flame",
+      "count": 2,
+      "image_path": "data/images/0098.webp"
+    }
+  ]
+}

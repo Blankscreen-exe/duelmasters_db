@@ -1,0 +1,112 @@
+{
+  "slug": "water-darkness-control",
+  "name": "Water-Darkness Control",
+  "strategy": "Classic draw-go control. Turns 2-4: wall up with blockers (Cosmo Politan draws when it blocks, Bloody Squito is a 4000-power wall for 2, Gigaslug's Slayer kills whatever it blocks, Hulk Crawler and Phantom Spear Zircon draw on entry). Use Energy Stream and Brain Serum to keep land drops and answers flowing. Mid-game: kill or bounce every real threat with Spiral Gate, Death Chaser, Hopeless Vortex and Terror Pit; Death Mendosa and Aqua Surfer are removal stapled to bodies. 15 Shield Triggers punish rush. Late game: land 7-cost double breakers that also remove creatures as they enter (Cyber X Xanadu tucks a creature to the bottom of the deck, Ghoul Ginus trades a shield for a kill, Olzekia sacrifices a used-up blocker so the opponent destroys 2 creatures), then close out once their board is empty. Mulligan/keep tips: you want a 2-cost blocker or Spiral Gate plus both civilizations in early mana. Put spare Cosmo Politans or excess 7-drops into mana early.",
+  "notes": "User request: Water/Darkness control, lots of removal, card draw and blockers, a few big finishers, any set. Weaknesses: only 5 finishers, so it can run out of win conditions in long games; Death Chaser, Death Mendosa and Terror Pit-only answers mean big unblockable evolutions can be tough; Xanadu's leave-play trigger can give the opponent a free creature; Ghoul Ginus's shield-to-hand trades away a shield. Swap options: Aku, Ultimate God (W/D 9000 double breaker), Crystal Axe (unblockable hand evolution), Proclamation of Weakness / Great Reversal of Reality and Death for more triggers, Tropic Crawler or Panaon as blockers that bounce.",
+  "valid": true,
+  "total_cards": 40,
+  "civilizations": [
+    "Water",
+    "Darkness"
+  ],
+  "created": "2026-10-19T07:59:59+00:00",
+  "updated": "2026-10-19T07:59:59+00:00",
+  "cards": [
+    {
+      "id": "2216",
+      "name": "Cosmo Politan",
+      "count": 4,
+      "image_path": "data/images/2216.webp"
+    },
+    {
+      "id": "0050",
+      "name": "Spiral Gate",
+      "count": 4,
+      "image_path": "data/images/0050.webp"
+    },
+    {
+      "id": "0056",
+      "name": "Bloody Squito",
+      "count": 2,
+      "image_path": "data/images/0056.webp"
+    },
+    {
+      "id": "0402",
+      "name": "Energy Stream",
+      "count": 3,
+      "image_path": "data/images/0402.webp"
+    },
+    {
+      "id": "0892",
+      "name": "Gigaslug",
+      "count": 2,
+      "image_path": "data/images/0892.webp"
+    },
+    {
+      "id": "2015",
+      "name": "Hulk Crawler",
+      "count": 3,
+      "image_path": "data/images/2015.webp"
+    },
+    {
+      "id": "9172",
+      "name": "Phantom Spear Zircon",
+      "count": 2,
+      "image_path": "data/images/9172.webp"
+    },
+    {
+      "id": "0037",
+      "name": "Brain Serum",
+      "count": 2,
+      "image_path": "data/images/0037.webp"
+    },
+    {
+      "id": "1098",
+      "name": "Death Chaser",
+      "count": 3,
+      "image_path": "data/images/1098.webp"
+    },
+    {
+      "id": "0514",
+      "name": "Hopeless Vortex",
+      "count": 2,
+      "image_path": "data/images/0514.webp"
+    },
+    {
+      "id": "0073",
+      "name": "Terror Pit",
+      "count": 4,
+      "image_path": "data/images/0073.webp"
+    },
+    {
+      "id": "1912",
+      "name": "Death Mendosa, Dragonic Baron of Death",
+      "count": 2,
+      "image_path": "data/images/1912.webp"
+    },
+    {
+      "id": "0321",
+      "name": "Aqua Surfer",
+      "count": 2,
+      "image_path": "data/images/0321.webp"
+    },
+    {
+      "id": "2258",
+      "name": "Cyber X Xanadu",
+      "count": 2,
+      "image_path": "data/images/2258.webp"
+    },
+    {
+      "id": "2263",
+      "name": "Ghoul Ginus, the All-Destroying Fear Lord",
+      "count": 2,
+      "image_path": "data/images/2263.webp"
+    },
+    {
+      "id": "1744",
+      "name": "Olzekia, General of Decapitation",
+      "count": 1,
+      "image_path": "data/images/1744.webp"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "duelmasters": {
+      "type": "stdio",
+      "command": "python",
+      "args": [
+        "mcp_server/server.py"
+      ],
+      "env": {}
+    }
+  }
+}

@@ -1,0 +1,106 @@
+{
+  "slug": "armored-dragon-overlords",
+  "name": "Armored Dragon Overlords",
+  "strategy": "Fire/Nature Armored Dragon ramp. Turns 2-3: Faerie Life, Bronze-Arm Tribe and Cocco Lupia (Dragons cost 2 less, minimum 2). From turn 4 drop 6-cost Armored Dragons, then evolve them into Überdragons. Bolshack NEX pulls a Cocco Lupia from the deck straight into the battle zone. Velyrika Dragon tutors more Armored Dragons. Valkerios Dragon is free once 2+ Armored Dragons are in play. Überdragon Bash Mikazuchi costs 3 with Cocco and makes the opponent destroy one of their own creatures whenever they attack. Überdragon Valkyrias cheats a Dragon from mana into play. Überdragon Bajula triple-breaks and destroys mana. Totto Pipicchi gives every Dragon speed attacker. Removal: Volcanic Arrows, Natural Snare, Bolmeteus Musha Dragon and Dolzark (whenever another Dragon attacks, sends a creature with 5000 or less power to mana). Mulligan for ramp or Cocco Lupia. Putting a 6-drop Dragon in mana early is fine because Valkyrias can bring it back.",
+  "notes": "The user asked for a tribal Dragon deck built around Armored Dragons and dragon evolutions, any civilizations and sets. Weaknesses: no blockers or card draw; slow against fast rush if the triggers don't show up; Volcanic Arrows and Musha Dragon cost your own shields. Swap options: Spiritual Star Dragon (tutors a Dragon evolution), Überdragon Jabaha, Bolsred Fire Dragon, Lupia Lapia, Evolution Egg.",
+  "valid": true,
+  "total_cards": 40,
+  "civilizations": [
+    "Fire",
+    "Nature"
+  ],
+  "created": "2026-10-19T07:59:47+00:00",
+  "updated": "2026-10-19T07:59:47+00:00",
+  "cards": [
+    {
+      "id": "0468",
+      "name": "Faerie Life",
+      "count": 4,
+      "image_path": "data/images/0468.webp"
+    },
+    {
+      "id": "0100",
+      "name": "Bronze-Arm Tribe",
+      "count": 4,
+      "image_path": "data/images/0100.webp"
+    },
+    {
+      "id": "0447",
+      "name": "Cocco Lupia",
+      "count": 4,
+      "image_path": "data/images/0447.webp"
+    },
+    {
+      "id": "0229",
+      "name": "Volcanic Arrows",
+      "count": 3,
+      "image_path": "data/images/0229.webp"
+    },
+    {
+      "id": "0589",
+      "name": "Totto Pipicchi",
+      "count": 2,
+      "image_path": "data/images/0589.webp"
+    },
+    {
+      "id": "0109",
+      "name": "Natural Snare",
+      "count": 2,
+      "image_path": "data/images/0109.webp"
+    },
+    {
+      "id": "2237",
+      "name": "Bolshack NEX",
+      "count": 3,
+      "image_path": "data/images/2237.webp"
+    },
+    {
+      "id": "9070",
+      "name": "Super Dragon Machine Dolzark",
+      "count": 3,
+      "image_path": "data/images/9070.webp"
+    },
+    {
+      "id": "1627",
+      "name": "Bolmeteus Musha Dragon",
+      "count": 2,
+      "image_path": "data/images/1627.webp"
+    },
+    {
+      "id": "1805",
+      "name": "Bolshack Yamato Dragon",
+      "count": 2,
+      "image_path": "data/images/1805.webp"
+    },
+    {
+      "id": "9034",
+      "name": "Velyrika Dragon",
+      "count": 2,
+      "image_path": "data/images/9034.webp"
+    },
+    {
+      "id": "1149",
+      "name": "Valkerios Dragon",
+      "count": 2,
+      "image_path": "data/images/1149.webp"
+    },
+    {
+      "id": "2246",
+      "name": "Überdragon Bash Mikazuchi",
+      "count": 3,
+      "image_path": "data/images/2246.webp"
+    },
+    {
+      "id": "1144",
+      "name": "Überdragon Valkyrias",
+      "count": 2,
+      "image_path": "data/images/1144.webp"
+    },
+    {
+      "id": "0544",
+      "name": "Überdragon Bajula",
+      "count": 2,
+      "image_path": "data/images/0544.webp"
+    }
+  ]
+}

@@ -55,6 +55,57 @@ JOIN card_keywords k ON k.card_id = c.id AND k.keyword = 'shield_trigger'
 WHERE c.card_type = 'Spell';
 ```
 
+## Claude Code tools (MCP server)
+
+`mcp_server/` is a local MCP server that lets Claude Code search the cards and build, analyze and
+save decks. It runs as a child process of Claude Code over stdin/stdout, so there's no port, no
+hosting and nothing to install (standard-library Python).
+
+**Setup:** open Claude Code in this folder (`claude`). It reads `.mcp.json` and asks you once to
+approve the `duelmasters` server. Then ask for a deck in plain English:
+
+> Build an aggressive Fire/Nature rush deck with Speed Attackers, using only DM-01 to DM-12.
+>
+> Make a Water/Darkness control deck with lots of removal and card draw.
+>
+> Look at my deck `armored-dragon-overlords` and suggest improvements against rush decks.
+
+You can also run the prompt directly: `/mcp__duelmasters__build_deck`.
+
+| Tool | Purpose |
+|---|---|
+| `search_cards` | Filter by civilization, cost, type, race, keyword, effect category, set, power, name or rules text |
+| `get_cards` | Full card details (abilities, tags, evolution requirement, image path) |
+| `list_values` | Valid races, keywords, categories, sets, etc. |
+| `find_synergies` | Evolution bases, evolutions a card can become, race support, cards that mention it by name |
+| `analyze_deck` | Mana curve, civilization split, role counts, evolution base check, warnings |
+| `validate_deck` | 40 cards, at most 4 copies per name, all cards exist |
+| `save_deck` / `list_decks` / `get_deck` / `delete_deck` | Decks stored as JSON in `data/decks/` |
+| `deckbuilding_guide` | Rules and archetype guidelines Claude follows (`mcp_server/deckbuilding_guide.md`) |
+
+Saved decks look like this, ready for a game to load:
+
+```json
+{
+  "slug": "water-darkness-control",
+  "name": "Water-Darkness Control",
+  "strategy": "...",
+  "valid": true,
+  "total_cards": 40,
+  "civilizations": ["Water", "Darkness"],
+  "cards": [{"id": "2216", "name": "Cosmo Politan", "count": 4, "image_path": "data/images/2216.webp"}]
+}
+```
+
+`data/decks/` includes three example decks built by Claude during testing.
+
+The deck logic lives in `mcp_server/dmdb.py` with no MCP code, so a game can import it directly.
+
+**Tests:** `python -m unittest discover tests` · **Server self-test:** `python mcp_server/server.py --selftest`
+
+**Limits:** the database has no ban list or format data, so only the basic deck rules are checked.
+The tools can't simulate games, so judgments about deck strength are Claude's opinion.
+
 ## Note on usage
 
 The card art and text belong to Wizards of the Coast / Takara Tomy. Personal or private use is
